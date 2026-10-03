@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>🛒 SOKoni - Nunua na Uza Tanzania</title>
+<title>🛒 SOKONI - Nunua • Uza • Tangaza</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -17,8 +17,8 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 ::-webkit-scrollbar-thumb{background:var(--primary);border-radius:10px;}
 .auth-wrapper{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);padding:20px;}
 .auth-card{background:#fff;border-radius:24px;padding:36px 32px;max-width:460px;width:100%;box-shadow:0 20px 60px rgba(22,163,74,0.15);}
-.auth-card .brand-icon{width:80px;height:80px;background:var(--primary);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
-.auth-card .brand-icon i{font-size:42px;color:#fff;}
+.auth-card .brand-icon{width:100px;height:100px;background:#fff;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+.auth-card .brand-icon img{width:100%;height:100%;object-fit:cover;}
 .auth-card h4{font-weight:800;color:var(--dark);text-align:center;letter-spacing:-0.5px;}
 .auth-card small{color:#64748b;display:block;text-align:center;margin-bottom:24px;font-style:italic;}
 .auth-card .form-control{border-radius:10px;padding:12px 16px;border:1.5px solid #e2e8f0;font-size:14px;}
@@ -30,8 +30,8 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 .buyer-hint{font-size:13px;color:#64748b;text-align:center;padding:10px 14px;background:#f0fdf4;border-radius:10px;border:1px dashed var(--primary);}
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-width);background:var(--dark);color:#e2e8f0;z-index:1050;transition:transform 0.3s;display:flex;flex-direction:column;overflow-y:auto;}
 .sidebar .brand{padding:16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px;}
-.sidebar .brand-icon-sm{width:44px;height:44px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;}
-.sidebar .brand-icon-sm i{font-size:24px;color:#fff;}
+.sidebar .brand-icon-sm{width:44px;height:44px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
+.sidebar .brand-icon-sm img{width:100%;height:100%;object-fit:cover;}
 .sidebar .brand span{font-weight:700;font-size:16px;color:#fff;display:block;line-height:1.1;}
 .sidebar .brand small{display:block;font-size:11px;color:#86efac;font-style:italic;}
 .sidebar .nav{flex:1;padding:16px 12px;display:flex;flex-direction:column;gap:2px;}
@@ -151,9 +151,10 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 <!-- LOGIN -->
 <div id="authPage" class="auth-wrapper">
   <div class="auth-card">
-    <div class="brand-icon"><i class="bi bi-shop"></i></div>
-    <h4>SOKoni</h4>
-    <small>"Nunua na Uza kwa Urahisi Tanzania"</small>
+    <div class="brand-icon">
+      <img src="https://iili.io/nlxxaEB.png" alt="SOKONI Logo" />
+    </div>
+    <small>"Nunua • Uza • Tangaza"</small>
 
     <form id="loginForm" onsubmit="return handleLogin(event)">
       <div class="mb-3" id="loginFieldsWrapper">
@@ -167,7 +168,6 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 
       <div class="mb-3 role-toggle d-flex gap-2 justify-content-center flex-wrap">
         <button type="button" class="btn" data-role="admin" onclick="setRole('admin')">👨‍💼 Admin</button>
-        <button type="button" class="btn" data-role="seller" onclick="setRole('seller')">🏢 Muuzaji</button>
         <button type="button" class="btn active" data-role="buyer" onclick="setRole('buyer')">👤 Mteja</button>
       </div>
 
@@ -181,7 +181,6 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       <div id="credsHint" class="creds-box" style="display:none;">
         <span class="fw-bold"><i class="bi bi-key-fill me-1"></i>Credentials:</span>
         <div id="credsAdmin" style="display:none;">👨‍💼 <strong>Admin:</strong> <code>admin@soko.app</code> / <code>admin123</code></div>
-        <div id="credsSeller" style="display:none;">🏢 <strong>Muuzaji:</strong> <code>seller@soko.app</code> / <code>seller123</code></div>
       </div>
 
       <button type="submit" class="btn btn-primary mt-3" id="loginBtn">
@@ -189,7 +188,7 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       </button>
 
       <p class="text-center mt-3 mb-0 small text-muted">
-        <i class="bi bi-shield-check"></i> Admin na Muuzaji wanahitaji kuingia kwa barua pepe
+        <i class="bi bi-shield-check"></i> Admin anahitaji kuingia kwa barua pepe
       </p>
     </form>
   </div>
@@ -200,9 +199,10 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 
 <aside class="sidebar" id="sidebar">
   <div class="brand">
-    <div class="brand-icon-sm"><i class="bi bi-shop"></i></div>
+    <div class="brand-icon-sm">
+      <img src="https://iili.io/nlxxaEB.png" alt="SOKONI Logo" />
+    </div>
     <div>
-      <span>Soko App</span>
       <small id="sidebarRoleLabel">TZ • Mteja</small>
     </div>
   </div>
@@ -217,12 +217,10 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       <span id="msgRedDot" class="red-dot-badge" style="display:none;">0</span>
     </a>
 
-    <div class="nav-label mt-3 seller-only" id="sellerNavLabel" style="display:none;">Kwa Muuzaji</div>
-    <a class="nav-link seller-only" data-page="dashboard" onclick="navigate('dashboard')" style="display:none;"><i class="bi bi-speedometer2"></i> Dashibodi</a>
-    <a class="nav-link seller-only" data-page="addproduct" onclick="navigate('addproduct')" style="display:none;"><i class="bi bi-plus-circle-fill"></i> Ongeza Bidhaa</a>
-    <a class="nav-link seller-only" data-page="mylistings" onclick="navigate('mylistings')" style="display:none;"><i class="bi bi-box-seam-fill"></i> Bidhaa Zangu</a>
-
-    <div class="nav-label mt-3 admin-only" id="adminNavLabel" style="display:none;">Admin</div>
+    <div class="nav-label mt-3 admin-only" id="adminNavLabel" style="display:none;">Usimamizi</div>
+    <a class="nav-link admin-only" data-page="dashboard" onclick="navigate('dashboard')" style="display:none;"><i class="bi bi-speedometer2"></i> Dashibodi</a>
+    <a class="nav-link admin-only" data-page="addproduct" onclick="navigate('addproduct')" style="display:none;"><i class="bi bi-plus-circle-fill"></i> Ongeza Bidhaa</a>
+    <a class="nav-link admin-only" data-page="mylistings" onclick="navigate('mylistings')" style="display:none;"><i class="bi bi-box-seam-fill"></i> Bidhaa Zangu</a>
     <a class="nav-link admin-only" data-page="admin" onclick="navigate('admin')" style="display:none;"><i class="bi bi-shield-lock-fill"></i> Admin Panel</a>
   </nav>
 
@@ -230,7 +228,7 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
     <button class="btn btn-sm btn-outline-danger w-100" onclick="handleLogout()">
       <i class="bi bi-box-arrow-right me-1"></i> Toka
     </button>
-    <div class="text-center mt-2 small" style="color:#64748b;">&copy; 2026 Soko App TZ</div>
+    <div class="text-center mt-2 small" style="color:#64748b;">&copy; 2026 SOKONI TZ</div>
   </div>
 </aside>
 
@@ -268,8 +266,9 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       <div class="product-grid" id="catProductsGrid"></div>
     </section>
 
+    <!-- DASHIBODI -->
     <section id="page-dashboard" class="page-section">
-      <h5 class="fw-bold mb-4">Dashibodi ya Muuzaji 👋</h5>
+      <h5 class="fw-bold mb-4">Dashibodi 👋</h5>
       <div class="row g-3 mb-4">
         <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-primary"><i class="bi bi-box-seam-fill"></i></div><div class="num" id="statTotal">0</div><div class="lbl">Bidhaa Zangu</div></div></div>
         <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-success"><i class="bi bi-check-circle-fill"></i></div><div class="num" id="statActive">0</div><div class="lbl">Zinapatikana</div></div></div>
@@ -284,6 +283,7 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       <div id="recentProducts"></div>
     </section>
 
+    <!-- ONGEZA BIDHAA -->
     <section id="page-addproduct" class="page-section">
       <div class="form-card">
         <h5><i class="bi bi-plus-circle-fill me-2" style="color:var(--primary);"></i><span id="formTitle">Ongeza Bidhaa Mpya</span></h5>
@@ -317,7 +317,7 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
           </div>
           <div class="row g-3 mb-3">
             <div class="col-md-6">
-              <label>Namba ya Simu ya Muuzaji *</label>
+              <label>Namba ya Simu *</label>
               <input type="tel" class="form-control" id="pSellerPhone" placeholder="mfano: 0712345678" required />
               <small class="text-muted"><i class="bi bi-info-circle"></i> Namba hii itaonekana kwa mteja.</small>
             </div>
@@ -361,6 +361,7 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       </div>
     </section>
 
+    <!-- BIDHAA ZANGU -->
     <section id="page-mylistings" class="page-section">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h5 class="fw-bold mb-0">Bidhaa Zangu</h5>
@@ -502,8 +503,6 @@ let allChatsCache = [];
 let productsUnsubscribe = null;
 let chatsUnsubscribe = null;
 
-const ADMIN_UID = 'admin1';
-
 const CATEGORIES = [
   { name: 'Magari',   icon: 'bi-car-front-fill',   color: '#3b82f6' },
   { name: 'Nyumba',   icon: 'bi-house-door-fill',  color: '#f97316' },
@@ -517,7 +516,6 @@ const CATEGORIES = [
    HELPERS
    ═══════════════════════════════════════════════════════════ */
 function formatCurrency(n) { return 'TSh ' + Number(n || 0).toLocaleString('en-US'); }
-function genId(prefix='p') { return prefix + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6); }
 function esc(str) { return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function chatIdFor(a, b) { return [a, b].sort().join('__'); }
 
@@ -613,8 +611,7 @@ function subscribeChats() {
   chatsUnsubscribe = db.collection(COL_CHATS)
     .where('participants', 'array-contains', currentUser.uid)
     .onSnapshot(snap => {
-      const freshChats = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      allChatsCache = freshChats;
+      allChatsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       updateAdminUnreadBadge();
       if (currentPage === 'messages') renderChatList();
       if (currentPage === 'chat' && activeChat) renderChatMessages();
@@ -669,8 +666,7 @@ function syncFromStorage(showAlert) {
     if (showAlert) alert('✅ Data imesawazishwa!\n\nWatumiaji: ' + allUsersCache.length + '\nBidhaa: ' + allProductsCache.length + '\nChats: ' + allChatsCache.length);
     if (currentUser) {
       renderHomeProducts(); renderCategoryProducts();
-      if (currentUser.role !== 'buyer') { renderDashboard(); renderMyListings(); }
-      if (currentUser.role === 'admin') renderAdmin();
+      if (currentUser.role === 'admin') { renderDashboard(); renderMyListings(); renderAdmin(); }
     }
     updateAdminUnreadBadge();
   });
@@ -699,11 +695,9 @@ function setRole(role) {
   const passInput = document.getElementById('loginPassword');
   const credsHint = document.getElementById('credsHint');
   const credsAdmin = document.getElementById('credsAdmin');
-  const credsSeller = document.getElementById('credsSeller');
   hideLoginAlert();
   if (credsHint) credsHint.style.display = 'none';
   if (credsAdmin) credsAdmin.style.display = 'none';
-  if (credsSeller) credsSeller.style.display = 'none';
 
   if (role === 'buyer') {
     fieldsWrap.style.display = 'none';
@@ -718,8 +712,7 @@ function setRole(role) {
     emailInput.setAttribute('required', 'required');
     passInput.setAttribute('required', 'required');
     if (credsHint) credsHint.style.display = 'block';
-    if (role === 'admin' && credsAdmin) credsAdmin.style.display = 'block';
-    if (role === 'seller' && credsSeller) credsSeller.style.display = 'block';
+    if (credsAdmin) credsAdmin.style.display = 'block';
   }
   emailInput.value = ''; passInput.value = '';
 }
@@ -736,7 +729,6 @@ async function handleLogin(e) {
 
   try {
     if (selectedRole === 'buyer') {
-      // Anonymous auth kwa mteja
       const cred = await auth.signInAnonymously();
       currentUser = {
         uid: cred.user.uid,
@@ -756,10 +748,15 @@ async function handleLogin(e) {
       return false;
     }
 
-    // Admin / Seller — email + password
+    // Admin — email + password
     const email = document.getElementById('loginEmail').value.trim().toLowerCase();
     const password = document.getElementById('loginPassword').value.trim();
-    if (!email || !password) { showLoginAlert('Weka barua pepe na neno la siri.'); btn.disabled = false; btn.innerHTML = '<i class="bi bi-box-arrow-in-right me-1"></i> Ingia'; return false; }
+    if (!email || !password) {
+      showLoginAlert('Weka barua pepe na neno la siri.');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-box-arrow-in-right me-1"></i> Ingia';
+      return false;
+    }
 
     const cred = await auth.signInWithEmailAndPassword(email, password);
     const userDocRef = db.collection(COL_USERS).doc(cred.user.uid);
@@ -768,15 +765,13 @@ async function handleLogin(e) {
     let userData;
     if (userDoc.exists) {
       userData = userDoc.data();
-      if (selectedRole === 'admin' && userData.role !== 'admin') throw new Error('Mtumiaji huyu si Admin.');
-      if (selectedRole === 'seller' && userData.role !== 'seller' && userData.role !== 'admin') throw new Error('Mtumiaji huyu si Muuzaji.');
+      if (userData.role !== 'admin') throw new Error('Mtumiaji huyu si Admin.');
     } else {
-      // Auto-create user doc kwa kutumia role iliyochaguliwa
       userData = {
         name: email.split('@')[0],
         email,
         phone: '',
-        role: selectedRole,
+        role: 'admin',
         createdAt: Date.now()
       };
       await userDocRef.set(userData);
@@ -829,30 +824,24 @@ function showApp() {
   document.getElementById('mainContent').style.display = 'block';
 
   const isAdmin = currentUser.role === 'admin';
-  const isSeller = currentUser.role === 'seller';
-  const isBuyer = currentUser.role === 'buyer';
-  const label = isAdmin ? 'Admin' : (isSeller ? 'Muuzaji' : 'Mteja');
+  const label = isAdmin ? 'Admin' : 'Mteja';
   const initial = (currentUser.name || 'U').charAt(0).toUpperCase();
 
   document.getElementById('userAvatar').textContent = initial;
   document.getElementById('sidebarRoleLabel').textContent = 'TZ • ' + label;
 
-  document.querySelectorAll('.seller-only').forEach(el => el.style.display = (isAdmin || isSeller) ? 'flex' : 'none');
-  document.getElementById('sellerNavLabel').style.display = (isAdmin || isSeller) ? 'block' : 'none';
   document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? 'flex' : 'none');
   document.getElementById('adminNavLabel').style.display = isAdmin ? 'block' : 'none';
 
   updateAdminUnreadBadge();
 
-  if (isBuyer) navigate('home');
-  else if (isSeller) navigate('dashboard');
-  else navigate('admin');
+  if (isAdmin) navigate('admin');
+  else navigate('home');
 }
 
 function navigate(page) {
   if (!currentUser) return;
   if (currentUser.role === 'buyer' && ['dashboard','addproduct','mylistings','admin','messages'].includes(page)) page = 'home';
-  if (currentUser.role === 'seller' && (page === 'admin' || page === 'messages')) page = 'dashboard';
   currentPage = page;
 
   document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
@@ -862,7 +851,7 @@ function navigate(page) {
   document.querySelectorAll('.sidebar .nav-link').forEach(link => link.classList.toggle('active', link.dataset.page === page));
 
   const titles = { home:'Nyumbani', categories:'Kategoria', dashboard:'Dashibodi', addproduct:'Ongeza Bidhaa', mylistings:'Bidhaa Zangu', messages:'Ujumbe', chat:'Chat', profile:'Wasifu Wangu', admin:'Admin Panel' };
-  document.getElementById('pageTitle').textContent = titles[page] || 'Soko App';
+  document.getElementById('pageTitle').textContent = titles[page] || 'SOKONI';
 
   if (page === 'home') renderHomeProducts();
   if (page === 'categories') renderCategoryProducts();
@@ -1034,7 +1023,7 @@ function viewProduct(id) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   IMAGE UPLOAD (Firebase Storage)
+   IMAGE UPLOAD
    ═══════════════════════════════════════════════════════════ */
 function handleImageSelect(e) {
   const files = Array.from(e.target.files || []);
@@ -1073,7 +1062,6 @@ function renderImagePreviews() {
 function removeImage(i) { uploadedImages.splice(i, 1); renderImagePreviews(); }
 
 async function uploadImagesToStorage(images, productId) {
-  // Tunapitisha picha moja kwa moja (base64) bila kupakia Firebase Storage
   return images;
 }
 
@@ -1114,10 +1102,9 @@ async function handleAddProduct(e) {
       return false;
     }
 
-    // 🔥 ULINZI WA PICHA 5 🔥
     if (uploadedImages.length < 5) {
       alert('Tafadhali weka angalau picha 5 ili kuweza kupublish bidhaa hii.');
-      btn.disabled = false; 
+      btn.disabled = false;
       btn.innerHTML = old;
       return false;
     }
@@ -1197,6 +1184,7 @@ async function toggleFeatured(id) {
    DASHBOARD / MY LISTINGS / ADMIN
    ═══════════════════════════════════════════════════════════ */
 function renderDashboard() {
+  if (!currentUser || currentUser.role !== 'admin') return;
   const mine = allProductsCache.filter(p => p.sellerId === currentUser.uid);
   document.getElementById('statTotal').textContent = mine.length;
   document.getElementById('statActive').textContent = mine.filter(p => !p.sold).length;
@@ -1205,13 +1193,14 @@ function renderDashboard() {
 
   const recent = mine.slice(0, 4);
   const r = document.getElementById('recentProducts');
-  if (!recent.length) r.innerHTML = `<div class="empty-state"><i class="bi bi-box-seam"></i><p>Hujauza bidhaa bado.</p></div>`;
+  if (!recent.length) r.innerHTML = `<div class="empty-state"><i class="bi bi-box-seam"></i><p>Hakuna bidhaa bado.</p></div>`;
   else r.innerHTML = `<div class="product-grid">${recent.map(productCardHTML).join('')}</div>`;
 }
 
 function renderMyListings() {
   const grid = document.getElementById('myListingsGrid');
   if (!grid) return;
+  if (!currentUser || currentUser.role !== 'admin') return;
   const mine = allProductsCache.filter(p => p.sellerId === currentUser.uid);
   if (!mine.length) {
     grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa bado.</p><button class="btn btn-primary mt-2" onclick="navigate('addproduct')">Ongeza Sasa</button></div>`;
@@ -1460,11 +1449,11 @@ function renderProfile() {
   document.getElementById('profileAvatar').textContent = initial;
   document.getElementById('profileName').textContent = currentUser.name || 'Mtumiaji';
   document.getElementById('profileEmail').textContent = currentUser.email || (currentUser.isAnonymous ? '(Mteja asiyejulikana)' : 'Haipo');
-  document.getElementById('profileRole').textContent = currentUser.role === 'admin' ? '👨‍💼 Admin' : (currentUser.role === 'seller' ? '🏢 Muuzaji' : '👤 Mteja');
+  document.getElementById('profileRole').textContent = currentUser.role === 'admin' ? '👨‍💼 Admin' : '👤 Mteja';
   document.getElementById('pInfoName').textContent = currentUser.name || '-';
   document.getElementById('pInfoEmail').textContent = currentUser.email || '-';
   document.getElementById('pInfoPhone').textContent = currentUser.phone || '-';
-  document.getElementById('pInfoRole').textContent = currentUser.role === 'admin' ? 'Admin' : (currentUser.role === 'seller' ? 'Muuzaji' : 'Mteja');
+  document.getElementById('pInfoRole').textContent = currentUser.role === 'admin' ? 'Admin' : 'Mteja';
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1474,8 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCategories();
   setRole('buyer');
   setConn('syncing', 'Inaunganisha...');
-  console.log('🛒 SOKoni (Firebase version) imeanza!');
-  console.log('💡 Kama kuingia kunashindwa, angalia Console (F12).');
+  console.log('🛒 SOKONI (Firebase version) imeanza! — Admin + Mteja tu');
 });
 </script>
 
