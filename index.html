@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>🛒 Soko App - Nunua na Uza Tanzania</title>
+<title>🛒 SOKoni - Nunua na Uza Tanzania</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -152,7 +152,7 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 <div id="authPage" class="auth-wrapper">
   <div class="auth-card">
     <div class="brand-icon"><i class="bi bi-shop"></i></div>
-    <h4>SOKO APP</h4>
+    <h4>SOKoni</h4>
     <small>"Nunua na Uza kwa Urahisi Tanzania"</small>
 
     <form id="loginForm" onsubmit="return handleLogin(event)">
@@ -290,11 +290,11 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
         <form onsubmit="return handleAddProduct(event)">
           <input type="hidden" id="editProductId" />
           <div class="mb-3">
-            <label>Picha (1-5)</label>
+            <label>Picha (Weka angalau 5) *</label>
             <div class="upload-area" onclick="document.getElementById('imageInput').click()">
               <i class="bi bi-cloud-arrow-up-fill"></i>
               <p class="mb-0 mt-2 fw-semibold">Bonyeza kuongeza picha</p>
-              <small class="text-muted">JPG, PNG — Hadi picha 5</small>
+              <small class="text-muted">JPG, PNG — Lazima uweke angalau picha 5</small>
             </div>
             <input type="file" id="imageInput" accept="image/*" multiple style="display:none;" onchange="handleImageSelect(event)" />
             <div id="imagePreview" class="mt-2"></div>
@@ -1073,16 +1073,8 @@ function renderImagePreviews() {
 function removeImage(i) { uploadedImages.splice(i, 1); renderImagePreviews(); }
 
 async function uploadImagesToStorage(images, productId) {
-  const urls = [];
-  for (let i = 0; i < images.length; i++) {
-    const img = images[i];
-    if (img.startsWith('http://') || img.startsWith('https://')) { urls.push(img); continue; }
-    const ref = storage.ref(`soko_products/${productId}/img_${i}_${Date.now()}.jpg`);
-    await ref.putString(img, 'data_url');
-    const url = await ref.getDownloadURL();
-    urls.push(url);
-  }
-  return urls;
+  // Tunapitisha picha moja kwa moja (base64) bila kupakia Firebase Storage
+  return images;
 }
 
 function resetProductForm() {
@@ -1119,6 +1111,14 @@ async function handleAddProduct(e) {
     if (!title || !category || !price || !location || !description || !sellerPhone) {
       alert('Jaza sehemu zote zenye *');
       btn.disabled = false; btn.innerHTML = old;
+      return false;
+    }
+
+    // 🔥 ULINZI WA PICHA 5 🔥
+    if (uploadedImages.length < 5) {
+      alert('Tafadhali weka angalau picha 5 ili kuweza kupublish bidhaa hii.');
+      btn.disabled = false; 
+      btn.innerHTML = old;
       return false;
     }
 
@@ -1474,7 +1474,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderCategories();
   setRole('buyer');
   setConn('syncing', 'Inaunganisha...');
-  console.log('🛒 Soko App (Firebase version) imeanza!');
+  console.log('🛒 SOKoni (Firebase version) imeanza!');
   console.log('💡 Kama kuingia kunashindwa, angalia Console (F12).');
 });
 </script>
