@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>🛒 Soko App - Nunua na Uza Tanzania</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+:root{--primary:#16a34a;--primary-dark:#15803d;--primary-light:#dcfce7;--accent:#f59e0b;--dark:#0f172a;--sidebar-width:260px;--header-height:64px;--radius:12px;--shadow:0 2px 12px rgba(0,0,0,0.06);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:hidden;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-thumb{background:var(--primary);border-radius:10px;}
+.auth-wrapper{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#ecfdf5 0%,#d1fae5 100%);padding:20px;}
+.auth-card{background:#fff;border-radius:24px;padding:36px 32px;max-width:460px;width:100%;box-shadow:0 20px 60px rgba(22,163,74,0.15);}
+.auth-card .brand-icon{width:80px;height:80px;background:var(--primary);border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.auth-card .brand-icon i{font-size:42px;color:#fff;}
+.auth-card h4{font-weight:800;color:var(--dark);text-align:center;letter-spacing:-0.5px;}
+.auth-card small{color:#64748b;display:block;text-align:center;margin-bottom:24px;font-style:italic;}
+.auth-card .form-control{border-radius:10px;padding:12px 16px;border:1.5px solid #e2e8f0;font-size:14px;}
+.auth-card .form-control:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(22,163,74,0.12);}
+.auth-card .btn-primary{background:var(--primary);border:none;border-radius:10px;padding:12px;font-weight:600;width:100%;}
+.auth-card .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,163,74,0.3);}
+.role-toggle .btn{border-radius:10px;padding:8px 14px;font-size:13px;font-weight:500;border:1.5px solid #e2e8f0;transition:0.2s;}
+.role-toggle .btn.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.buyer-hint{font-size:13px;color:#64748b;text-align:center;padding:10px 14px;background:#f0fdf4;border-radius:10px;border:1px dashed var(--primary);}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-width);background:var(--dark);color:#e2e8f0;z-index:1050;transition:transform 0.3s;display:flex;flex-direction:column;overflow-y:auto;}
+.sidebar .brand{padding:16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px;}
+.sidebar .brand-icon-sm{width:44px;height:44px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.sidebar .brand-icon-sm i{font-size:24px;color:#fff;}
+.sidebar .brand span{font-weight:700;font-size:16px;color:#fff;display:block;line-height:1.1;}
+.sidebar .brand small{display:block;font-size:11px;color:#86efac;font-style:italic;}
+.sidebar .nav{flex:1;padding:16px 12px;display:flex;flex-direction:column;gap:2px;}
+.sidebar .nav-label{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#64748b;padding:12px 12px 6px;font-weight:600;}
+.sidebar .nav-link{color:#cbd5e1;padding:10px 14px;border-radius:10px;font-size:14px;font-weight:500;display:flex;align-items:center;gap:12px;cursor:pointer;transition:0.2s;position:relative;}
+.sidebar .nav-link i{font-size:20px;width:24px;text-align:center;color:#64748b;}
+.sidebar .nav-link:hover{background:rgba(255,255,255,0.06);color:#fff;}
+.sidebar .nav-link:hover i{color:var(--primary);}
+.sidebar .nav-link.active{background:rgba(22,163,74,0.18);color:#86efac;}
+.sidebar .nav-link.active i{color:#86efac;}
+.sidebar .footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,0.06);}
+.red-dot-badge{position:absolute;top:6px;right:10px;min-width:20px;height:20px;padding:0 6px;background:#ef4444;color:#fff;border-radius:10px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px var(--dark);animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.15);}}
+.main-content{margin-left:var(--sidebar-width);min-height:100vh;transition:margin-left 0.3s;}
+.header{height:var(--header-height);padding:0 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1040;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid #e2e8f0;}
+.header .toggle-sidebar{background:none;border:none;font-size:24px;color:#475569;display:none;cursor:pointer;}
+.header .page-title{font-weight:700;font-size:18px;color:var(--dark);}
+.header .user-info{display:flex;align-items:center;gap:12px;}
+.header .avatar{width:38px;height:38px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer;position:relative;}
+.content{padding:24px;}
+.page-section{display:none;animation:fadeIn 0.3s ease;}
+.page-section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.search-bar{display:flex;gap:8px;margin-bottom:20px;}
+.search-bar input{flex:1;padding:12px 18px;border-radius:12px;border:1.5px solid #e2e8f0;font-size:14px;background:#fff;}
+.search-bar input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(22,163,74,0.1);}
+.cat-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:8px;margin-bottom:20px;}
+.cat-item{flex-shrink:0;width:100px;padding:16px 8px;background:#fff;border-radius:14px;text-align:center;cursor:pointer;transition:0.2s;box-shadow:var(--shadow);border:1.5px solid transparent;}
+.cat-item:hover{transform:translateY(-3px);border-color:var(--primary);}
+.cat-item i{font-size:30px;display:block;margin-bottom:8px;}
+.cat-item span{font-size:12px;font-weight:600;color:#334155;}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;}
+.product-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:0.25s;border:1px solid #f1f5f9;}
+.product-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.08);}
+.product-card .img-box{height:160px;background:#e5e7eb;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.product-card .img-box img{width:100%;height:100%;object-fit:cover;}
+.product-card .img-box i{font-size:48px;color:#9ca3af;}
+.product-card .badge-feat{position:absolute;top:10px;left:10px;background:var(--accent);color:#fff;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.product-card .badge-sold{position:absolute;top:10px;right:10px;background:#ef4444;color:#fff;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;}
+.product-card .body{padding:12px;}
+.product-card .title{font-weight:700;font-size:14px;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.product-card .price{color:var(--primary);font-weight:800;font-size:15px;}
+.product-card .loc{font-size:11px;color:#64748b;display:flex;align-items:center;gap:4px;margin-top:4px;}
+.stat-mini{background:#fff;padding:18px 12px;border-radius:var(--radius);box-shadow:var(--shadow);text-align:center;border:1px solid #f1f5f9;}
+.stat-mini .icon{font-size:26px;margin-bottom:6px;}
+.stat-mini .num{font-size:22px;font-weight:800;color:var(--dark);}
+.stat-mini .lbl{font-size:12px;color:#64748b;font-weight:500;}
+.form-card{background:#fff;border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border:1px solid #f1f5f9;max-width:820px;margin:0 auto;}
+.form-card h5{font-weight:700;margin-bottom:20px;}
+.form-card label{font-weight:600;font-size:13px;color:#334155;margin-bottom:6px;}
+.form-card .form-control,.form-card .form-select{border-radius:10px;padding:10px 14px;border:1.5px solid #e2e8f0;font-size:14px;}
+.form-card .form-control:focus,.form-card .form-select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(22,163,74,0.1);}
+.upload-area{border:2px dashed #cbd5e1;border-radius:var(--radius);padding:30px;text-align:center;cursor:pointer;transition:0.2s;background:#f8fafc;}
+.upload-area:hover{border-color:var(--primary);background:#f0fdf4;}
+.upload-area i{font-size:40px;color:#94a3b8;}
+.img-preview{position:relative;display:inline-block;margin:4px;}
+.img-preview img{width:90px;height:90px;object-fit:cover;border-radius:10px;border:2px solid #e2e8f0;}
+.img-preview .rm{position:absolute;top:-6px;right:-6px;background:#ef4444;color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;}
+.detail-modal-img{width:100%;max-height:400px;object-fit:contain;background:#0f172a;border-radius:12px;}
+.spec-row{padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:14px;}
+.spec-row:last-child{border-bottom:none;}
+.spec-row .k{font-size:14px;color:#64748b;font-weight:500;}
+.spec-row .v{font-size:14px;font-weight:600;color:#1e293b;}
+.phone-spec-row{background:linear-gradient(135deg,#dcfce7,#f0fdf4);border:2px solid var(--primary);border-radius:10px;padding:14px 16px;margin:12px 0;display:flex;justify-content:space-between;align-items:center;}
+.phone-spec-row .k{color:var(--primary-dark);font-weight:700;font-size:14px;}
+.phone-spec-row .v{color:var(--primary-dark);font-weight:900;font-size:18px;letter-spacing:1px;}
+.phone-spec-row a{color:var(--primary-dark);text-decoration:none;}
+.footer-phone{background:linear-gradient(135deg,#dcfce7,#f0fdf4);border:2px solid var(--primary);border-radius:10px;padding:8px 16px;font-size:16px;font-weight:800;color:var(--primary-dark)!important;display:inline-flex;align-items:center;gap:8px;transition:0.2s;letter-spacing:0.5px;cursor:pointer;text-decoration:none;}
+.footer-phone:hover{background:linear-gradient(135deg,#bbf7d0,#dcfce7);color:var(--primary-dark)!important;transform:translateY(-1px);box-shadow:0 4px 12px rgba(22,163,74,0.25);}
+.footer-phone i{font-size:18px;color:var(--primary);}
+.footer-phone-empty{font-size:14px;color:#991b1b;font-weight:600;display:inline-flex;align-items:center;gap:6px;}
+.chat-container{height:calc(100vh - var(--header-height) - 100px);display:flex;flex-direction:column;background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+.chat-msgs{flex:1;overflow-y:auto;padding:20px;background:#f8fafc;}
+.msg-bubble{max-width:70%;padding:10px 14px;border-radius:16px;margin-bottom:8px;font-size:14px;line-height:1.4;word-wrap:break-word;}
+.msg-me{background:var(--primary);color:#fff;margin-left:auto;border-bottom-right-radius:4px;}
+.msg-other{background:#fff;color:#1e293b;border:1px solid #e2e8f0;border-bottom-left-radius:4px;}
+.msg-sender{font-size:10px;opacity:0.7;margin-bottom:3px;display:block;}
+.chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid #e2e8f0;background:#fff;}
+.chat-input input{flex:1;padding:10px 16px;border-radius:24px;border:1.5px solid #e2e8f0;font-size:14px;}
+.chat-input input:focus{outline:none;border-color:var(--primary);}
+.chat-input button{width:44px;height:44px;border-radius:50%;background:var(--primary);border:none;color:#fff;font-size:18px;cursor:pointer;}
+.chat-list-item{display:flex;align-items:center;gap:12px;padding:14px;background:#fff;border-radius:var(--radius);margin-bottom:8px;cursor:pointer;box-shadow:var(--shadow);border:1px solid #f1f5f9;transition:0.2s;position:relative;}
+.chat-list-item:hover{border-color:var(--primary);}
+.chat-list-item.unread{background:#fef2f2;border-color:#fecaca;}
+.chat-list-item .avatar-sm{width:44px;height:44px;border-radius:50%;background:var(--primary-light);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;}
+.chat-list-item .unread-badge{background:#ef4444;color:#fff;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;}
+.chat-list-item .action-btns{display:flex;gap:6px;align-items:center;margin-left:auto;}
+.chat-list-item .delete-btn{background:#fee2e2;color:#ef4444;border:none;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:0.2s;font-size:16px;}
+.chat-list-item .delete-btn:hover{background:#ef4444;color:#fff;transform:scale(1.05);}
+.chat-list-item .delete-btn i{font-size:16px;color:inherit!important;}
+.clear-all-btn{background:#fee2e2;color:#ef4444;border:1px solid #ef4444;padding:6px 14px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:0.2s;display:inline-flex;align-items:center;gap:6px;}
+.clear-all-btn:hover{background:#ef4444;color:#fff;}
+.clear-all-btn i{font-size:14px;}
+.profile-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:#fff;padding:30px;border-radius:var(--radius);text-align:center;margin-bottom:20px;}
+.profile-header .avatar-lg{width:90px;height:90px;border-radius:50%;background:#fff;color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:40px;margin:0 auto 14px;font-weight:700;}
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:1045;}
+.sidebar-overlay.active{display:block;}
+.btn-primary{background:var(--primary);border-color:var(--primary);}
+.btn-primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
+.btn-outline-primary{color:var(--primary);border-color:var(--primary);}
+.btn-outline-primary:hover{background:var(--primary);color:#fff;}
+.conn-status{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;}
+.conn-status.online{background:#d1fae5;color:#065f46;}
+.conn-status.offline{background:#fee2e2;color:#991b1b;}
+.conn-status.syncing{background:#fef3c7;color:#92400e;}
+.empty-state{text-align:center;padding:60px 20px;color:#94a3b8;}
+.empty-state i{font-size:72px;margin-bottom:12px;display:block;}
+.creds-box{font-size:13px;padding:12px 16px;background:#f0fdf4;border-radius:10px;border-left:4px solid var(--primary);margin-top:16px;}
+.creds-box code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--primary-dark);font-size:12px;}
+.creds-box .fw-bold{color:var(--dark);margin-bottom:6px;display:block;}
+@media(max-width:992px){.sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}.main-content{margin-left:0;}.header .toggle-sidebar{display:block;}.content{padding:16px;}}
+@media(max-width:576px){.auth-card{padding:26px 20px;}.product-grid{grid-template-columns:repeat(2,1fr);gap:10px;}.product-card .img-box{height:130px;}.cat-item{width:80px;padding:12px 6px;}.cat-item i{font-size:24px;}.phone-spec-row .v{font-size:16px;}.footer-phone{font-size:14px;padding:6px 12px;}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="authPage" class="auth-wrapper">
+  <div class="auth-card">
+    <div class="brand-icon"><i class="bi bi-shop"></i></div>
+    <h4>SOKO APP</h4>
+    <small>"Nunua na Uza kwa Urahisi Tanzania"</small>
+
+    <form id="loginForm" onsubmit="return handleLogin(event)">
+      <div class="mb-3" id="loginFieldsWrapper">
+        <label class="form-label fw-semibold small">Barua pepe</label>
+        <input type="email" class="form-control" id="loginEmail" placeholder="mfano@gmail.com" autocomplete="email" />
+      </div>
+      <div class="mb-3" id="passwordWrapper">
+        <label class="form-label fw-semibold small">Neno la Siri</label>
+        <input type="password" class="form-control" id="loginPassword" placeholder="••••••" autocomplete="current-password" />
+      </div>
+
+      <div class="mb-3 role-toggle d-flex gap-2 justify-content-center flex-wrap">
+        <button type="button" class="btn" data-role="admin" onclick="setRole('admin')">👨‍💼 Admin</button>
+        <button type="button" class="btn" data-role="seller" onclick="setRole('seller')">🏢 Muuzaji</button>
+        <button type="button" class="btn active" data-role="buyer" onclick="setRole('buyer')">👤 Mteja</button>
+      </div>
+
+      <div id="buyerHint" class="buyer-hint mb-3">
+        <i class="bi bi-info-circle me-1"></i>
+        <strong>Mteja anaingia bure!</strong> Huhitaji barua pepe wala neno la siri.
+      </div>
+
+      <div id="loginAlert" style="display:none;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:12px;"></div>
+
+      <div id="credsHint" class="creds-box" style="display:none;">
+        <span class="fw-bold"><i class="bi bi-key-fill me-1"></i>Credentials:</span>
+        <div id="credsAdmin" style="display:none;">👨‍💼 <strong>Admin:</strong> <code>admin@soko.app</code> / <code>admin123</code></div>
+        <div id="credsSeller" style="display:none;">🏢 <strong>Muuzaji:</strong> <code>seller@soko.app</code> / <code>seller123</code></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3" id="loginBtn">
+        <i class="bi bi-box-arrow-in-right me-1"></i> Ingia
+      </button>
+
+      <p class="text-center mt-3 mb-0 small text-muted">
+        <i class="bi bi-shield-check"></i> Admin na Muuzaji wanahitaji kuingia kwa barua pepe
+      </p>
+    </form>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-icon-sm"><i class="bi bi-shop"></i></div>
+    <div>
+      <span>Soko App</span>
+      <small id="sidebarRoleLabel">TZ • Mteja</small>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-label">Menu Kuu</div>
+    <a class="nav-link active" data-page="home" onclick="navigate('home')"><i class="bi bi-house-door-fill"></i> Nyumbani</a>
+    <a class="nav-link" data-page="categories" onclick="navigate('categories')"><i class="bi bi-grid-3x3-gap-fill"></i> Kategoria</a>
+
+    <a class="nav-link admin-only" id="msgNavLink" data-page="messages" onclick="navigate('messages')" style="display:none;">
+      <i class="bi bi-envelope-fill"></i> Ujumbe
+      <span id="msgRedDot" class="red-dot-badge" style="display:none;">0</span>
+    </a>
+
+    <div class="nav-label mt-3 seller-only" id="sellerNavLabel" style="display:none;">Kwa Muuzaji</div>
+    <a class="nav-link seller-only" data-page="dashboard" onclick="navigate('dashboard')" style="display:none;"><i class="bi bi-speedometer2"></i> Dashibodi</a>
+    <a class="nav-link seller-only" data-page="addproduct" onclick="navigate('addproduct')" style="display:none;"><i class="bi bi-plus-circle-fill"></i> Ongeza Bidhaa</a>
+    <a class="nav-link seller-only" data-page="mylistings" onclick="navigate('mylistings')" style="display:none;"><i class="bi bi-box-seam-fill"></i> Bidhaa Zangu</a>
+
+    <div class="nav-label mt-3 admin-only" id="adminNavLabel" style="display:none;">Admin</div>
+    <a class="nav-link admin-only" data-page="admin" onclick="navigate('admin')" style="display:none;"><i class="bi bi-shield-lock-fill"></i> Admin Panel</a>
+  </nav>
+
+  <div class="footer">
+    <button class="btn btn-sm btn-outline-danger w-100" onclick="handleLogout()">
+      <i class="bi bi-box-arrow-right me-1"></i> Toka
+    </button>
+    <div class="text-center mt-2 small" style="color:#64748b;">&copy; 2026 Soko App TZ</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main-content" id="mainContent" style="display:none;">
+  <header class="header">
+    <div class="d-flex align-items-center gap-3">
+      <button class="toggle-sidebar" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
+      <span class="page-title" id="pageTitle">Nyumbani</span>
+    </div>
+    <div class="user-info">
+      <span id="connStatus" class="d-none d-md-inline conn-status syncing"><i class="bi bi-cloud"></i> Inaunganisha...</span>
+      <div class="avatar" id="userAvatar" onclick="navigate('profile')">U</div>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <section id="page-home" class="page-section active">
+      <div class="search-bar">
+        <input type="text" id="homeSearch" placeholder="🔍 Tafuta bidhaa, eneo, au aina..." oninput="renderHomeProducts()" />
+      </div>
+      <h6 class="fw-bold mb-3">Kategoria</h6>
+      <div class="cat-scroll" id="homeCategories"></div>
+      <h6 class="fw-bold mb-3">Bidhaa Mpya</h6>
+      <div class="product-grid" id="homeProductsGrid"></div>
+    </section>
+
+    <section id="page-categories" class="page-section">
+      <div class="search-bar">
+        <input type="text" id="catSearch" placeholder="🔍 Tafuta kwenye kategoria..." oninput="renderCategoryProducts()" />
+      </div>
+      <div class="cat-scroll" id="allCategories" style="flex-wrap:wrap;justify-content:flex-start;"></div>
+      <h6 class="fw-bold mb-3 mt-3" id="catTitle">Bidhaa Zote</h6>
+      <div class="product-grid" id="catProductsGrid"></div>
+    </section>
+
+    <section id="page-dashboard" class="page-section">
+      <h5 class="fw-bold mb-4">Dashibodi ya Muuzaji 👋</h5>
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-primary"><i class="bi bi-box-seam-fill"></i></div><div class="num" id="statTotal">0</div><div class="lbl">Bidhaa Zangu</div></div></div>
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-success"><i class="bi bi-check-circle-fill"></i></div><div class="num" id="statActive">0</div><div class="lbl">Zinapatikana</div></div></div>
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-warning"><i class="bi bi-star-fill"></i></div><div class="num" id="statFeatured">0</div><div class="lbl">Featured</div></div></div>
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-danger"><i class="bi bi-cash-stack"></i></div><div class="num" id="statValue" style="font-size:16px;">TSh 0</div><div class="lbl">Thamani</div></div></div>
+      </div>
+      <div class="d-grid gap-2 d-md-flex mb-4">
+        <button class="btn btn-primary" onclick="navigate('addproduct')"><i class="bi bi-plus-circle me-1"></i> Ongeza Bidhaa Mpya</button>
+        <button class="btn btn-outline-primary" onclick="navigate('mylistings')"><i class="bi bi-list-ul me-1"></i> Bidhaa Zangu</button>
+      </div>
+      <h6 class="fw-bold mb-3">Bidhaa Zangu za Karibuni</h6>
+      <div id="recentProducts"></div>
+    </section>
+
+    <section id="page-addproduct" class="page-section">
+      <div class="form-card">
+        <h5><i class="bi bi-plus-circle-fill me-2" style="color:var(--primary);"></i><span id="formTitle">Ongeza Bidhaa Mpya</span></h5>
+        <form onsubmit="return handleAddProduct(event)">
+          <input type="hidden" id="editProductId" />
+          <div class="mb-3">
+            <label>Picha (1-5)</label>
+            <div class="upload-area" onclick="document.getElementById('imageInput').click()">
+              <i class="bi bi-cloud-arrow-up-fill"></i>
+              <p class="mb-0 mt-2 fw-semibold">Bonyeza kuongeza picha</p>
+              <small class="text-muted">JPG, PNG — Hadi picha 5</small>
+            </div>
+            <input type="file" id="imageInput" accept="image/*" multiple style="display:none;" onchange="handleImageSelect(event)" />
+            <div id="imagePreview" class="mt-2"></div>
+          </div>
+          <div class="mb-3"><label>Jina la Bidhaa *</label><input type="text" class="form-control" id="pTitle" placeholder="mfano: Toyota IST 2012" required /></div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label>Kategoria *</label>
+              <select class="form-select" id="pCategory" required>
+                <option value="">-- Chagua --</option>
+                <option value="Magari">🚗 Magari</option>
+                <option value="Nyumba">🏠 Nyumba</option>
+                <option value="Simu">📱 Simu</option>
+                <option value="Computer">💻 Computer</option>
+                <option value="Pikipiki">🏍️ Pikipiki</option>
+                <option value="Viwanja">🌍 Viwanja</option>
+              </select>
+            </div>
+            <div class="col-md-6"><label>Bei (TSh) *</label><input type="number" class="form-control" id="pPrice" placeholder="12000000" required /></div>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label>Namba ya Simu ya Muuzaji *</label>
+              <input type="tel" class="form-control" id="pSellerPhone" placeholder="mfano: 0712345678" required />
+              <small class="text-muted"><i class="bi bi-info-circle"></i> Namba hii itaonekana kwa mteja.</small>
+            </div>
+            <div class="col-md-6">
+              <label>Jina la Muuzaji / Duka</label>
+              <input type="text" class="form-control" id="pSellerName" placeholder="mfano: Soko Duka" />
+              <small class="text-muted"><i class="bi bi-info-circle"></i> Kiache tupu kutumia jina la akaunti yako.</small>
+            </div>
+          </div>
+          <div class="row g-3 mb-3">
+            <div class="col-md-6">
+              <label>Eneo / Mkoa *</label>
+              <select class="form-select" id="pLocation" required>
+                <option value="">-- Chagua --</option>
+                <option>Dar es Salaam</option>
+                <option>Arusha</option>
+                <option>Mwanza</option>
+                <option>Dodoma</option>
+                <option>Mbeya</option>
+                <option>Tanga</option>
+                <option>Morogoro</option>
+                <option>Kilimanjaro</option>
+                <option>Zanzibar</option>
+                <option>Mtwara</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>Hali</label>
+              <select class="form-select" id="pCondition">
+                <option value="mpya">Mpya</option>
+                <option value="iliyotumika">Iliyotumika</option>
+              </select>
+            </div>
+          </div>
+          <div class="mb-3"><label>Maelezo *</label><textarea class="form-control" id="pDesc" rows="4" placeholder="Eleza bidhaa yako kwa undani..." required></textarea></div>
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary" id="submitBtn"><i class="bi bi-cloud-upload me-1"></i> <span id="submitText">Publish Bidhaa</span></button>
+            <button type="button" class="btn btn-secondary" onclick="navigate('dashboard')">Ghairi</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section id="page-mylistings" class="page-section">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="fw-bold mb-0">Bidhaa Zangu</h5>
+        <button class="btn btn-primary btn-sm" onclick="navigate('addproduct')"><i class="bi bi-plus-lg me-1"></i> Ongeza</button>
+      </div>
+      <div class="product-grid" id="myListingsGrid"></div>
+    </section>
+
+    <section id="page-messages" class="page-section">
+      <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+        <h5 class="fw-bold mb-0"><i class="bi bi-envelope-fill me-2" style="color:var(--primary);"></i>Ujumbe wa Wateja</h5>
+        <button class="clear-all-btn" onclick="clearAllChats()" id="clearAllBtn" style="display:none;"><i class="bi bi-trash-fill"></i> Futa Zote</button>
+      </div>
+      <div id="chatListView"></div>
+    </section>
+
+    <section id="page-profile" class="page-section">
+      <div class="profile-header">
+        <div class="avatar-lg" id="profileAvatar">U</div>
+        <h5 class="fw-bold mb-1" id="profileName">Mtumiaji</h5>
+        <p class="mb-0 opacity-75" id="profileEmail">email@example.com</p>
+        <span class="badge bg-light text-dark mt-2" id="profileRole">Mteja</span>
+      </div>
+      <div class="card border-0 shadow-sm" style="border-radius:var(--radius);">
+        <div class="card-body">
+          <div class="spec-row d-flex justify-content-between"><span class="k"><i class="bi bi-person me-2"></i>Jina</span><span class="v" id="pInfoName">-</span></div>
+          <div class="spec-row d-flex justify-content-between"><span class="k"><i class="bi bi-envelope me-2"></i>Email</span><span class="v" id="pInfoEmail">-</span></div>
+          <div class="spec-row d-flex justify-content-between"><span class="k"><i class="bi bi-phone me-2"></i>Simu</span><span class="v" id="pInfoPhone">-</span></div>
+          <div class="spec-row d-flex justify-content-between"><span class="k"><i class="bi bi-shield me-2"></i>Aina</span><span class="v" id="pInfoRole">-</span></div>
+        </div>
+      </div>
+      <button class="btn btn-outline-danger w-100 mt-3" onclick="handleLogout()"><i class="bi bi-box-arrow-right me-1"></i> Toka kwenye Akaunti</button>
+    </section>
+
+    <section id="page-admin" class="page-section">
+      <h5 class="fw-bold mb-4"><i class="bi bi-shield-lock-fill me-2" style="color:var(--primary);"></i>Admin Panel</h5>
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-primary"><i class="bi bi-people-fill"></i></div><div class="num" id="adminStatUsers">0</div><div class="lbl">Watumiaji</div></div></div>
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-success"><i class="bi bi-box-seam-fill"></i></div><div class="num" id="adminStatProducts">0</div><div class="lbl">Bidhaa</div></div></div>
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-warning"><i class="bi bi-star-fill"></i></div><div class="num" id="adminStatFeatured">0</div><div class="lbl">Featured</div></div></div>
+        <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-danger"><i class="bi bi-cash-stack"></i></div><div class="num" id="adminStatValue" style="font-size:14px;">TSh 0</div><div class="lbl">Thamani</div></div></div>
+      </div>
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="form-card">
+            <h6 class="fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Watumiaji Wote</h6>
+            <div class="table-responsive">
+              <table class="table table-sm"><thead><tr><th>Jina</th><th>Email</th><th>Simu</th><th>Role</th><th>Vitendo</th></tr></thead><tbody id="adminUsersTable"></tbody></table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-card">
+            <h6 class="fw-bold mb-3"><i class="bi bi-box-seam-fill me-2"></i>Bidhaa Zote</h6>
+            <div class="table-responsive">
+              <table class="table table-sm"><thead><tr><th>Bidhaa</th><th>Bei</th><th>Muuzaji</th><th>Simu</th><th>Vitendo</th></tr></thead><tbody id="adminProductsTable"></tbody></table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-card">
+            <h6 class="fw-bold mb-3"><i class="bi bi-cloud-fill me-2"></i>Firebase</h6>
+            <p class="small text-muted mb-2">Data zote zinahifadhiwa kwenye Firebase (wingu).</p>
+            <div class="d-flex flex-wrap gap-2">
+              <button class="btn btn-primary btn-sm" onclick="syncFromStorage(true)"><i class="bi bi-arrow-clockwise me-1"></i> Sasisha</button>
+              <button class="btn btn-outline-info btn-sm" onclick="exportData()"><i class="bi bi-box-arrow-up me-1"></i> Export JSON</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal fade" id="productModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content" style="border-radius:16px;border:none;">
+      <div class="modal-header border-0">
+        <h6 class="modal-title fw-bold" id="modalTitle">Maelezo ya Bidhaa</h6>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-footer border-0 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <a id="footerPhoneLink" href="#" class="footer-phone" style="display:none;">
+          <i class="bi bi-telephone-fill"></i> <span id="footerPhoneText">0712345678</span>
+        </a>
+        <span id="footerPhoneEmpty" class="footer-phone-empty" style="display:none;"><i class="bi bi-telephone-x"></i> Namba haipo</span>
+        <div class="d-flex gap-2 ms-auto">
+          <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Funga</button>
+          <button class="btn btn-primary btn-sm" id="modalChatBtn"><i class="bi bi-chat-dots me-1"></i> Chat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-storage-compat.js"></script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   FIREBASE INIT
+   ═══════════════════════════════════════════════════════════ */
+const firebaseConfig = {
+  apiKey: "AIzaSyCCs7XZmJwK90aMZ2kzU7g7iPyBN11lHsY",
+  authDomain: "mfumo-wa-shule.firebaseapp.com",
+  projectId: "mfumo-wa-shule",
+  storageBucket: "mfumo-wa-shule.firebasestorage.app",
+  messagingSenderId: "828217216595",
+  appId: "1:828217216595:web:a9318c0a75b7d3389240a6",
+  measurementId: "G-K6CT8D015R"
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+const COL_USERS = 'soko_users';
+const COL_PRODUCTS = 'soko_products';
+const COL_CHATS = 'soko_chats';
+
+/* ═══════════════════════════════════════════════════════════
+   STATE
+   ═══════════════════════════════════════════════════════════ */
+let currentUser = null;
+let selectedRole = 'buyer';
+let currentPage = 'home';
+let currentCategory = '';
+let uploadedImages = [];
+let activeChat = null;
+let allProductsCache = [];
+let allUsersCache = [];
+let allChatsCache = [];
+let productsUnsubscribe = null;
+let chatsUnsubscribe = null;
+
+const ADMIN_UID = 'admin1';
+
+const CATEGORIES = [
+  { name: 'Magari',   icon: 'bi-car-front-fill',   color: '#3b82f6' },
+  { name: 'Nyumba',   icon: 'bi-house-door-fill',  color: '#f97316' },
+  { name: 'Simu',     icon: 'bi-phone-fill',       color: '#a855f7' },
+  { name: 'Computer', icon: 'bi-laptop-fill',      color: '#14b8a6' },
+  { name: 'Pikipiki', icon: 'bi-bicycle',          color: '#ef4444' },
+  { name: 'Viwanja',  icon: 'bi-map-fill',         color: '#22c55e' },
+];
+
+/* ═══════════════════════════════════════════════════════════
+   HELPERS
+   ═══════════════════════════════════════════════════════════ */
+function formatCurrency(n) { return 'TSh ' + Number(n || 0).toLocaleString('en-US'); }
+function genId(prefix='p') { return prefix + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6); }
+function esc(str) { return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function chatIdFor(a, b) { return [a, b].sort().join('__'); }
+
+function setConn(status, text) {
+  const el = document.getElementById('connStatus');
+  if (!el) return;
+  const map = {
+    online:  { cls: 'online',  icon: 'bi-cloud-check-fill', t: text || 'Firebase' },
+    offline: { cls: 'offline', icon: 'bi-cloud-slash',       t: text || 'Haipatikani' },
+    syncing: { cls: 'syncing', icon: 'bi-arrow-repeat',      t: text || 'Inasawazisha...' }
+  };
+  const s = map[status] || map.syncing;
+  el.className = 'conn-status ' + s.cls + ' d-none d-md-inline';
+  el.innerHTML = '<i class="bi ' + s.icon + '"></i> ' + s.t;
+}
+
+function translateError(err) {
+  const code = err.code || '';
+  const map = {
+    'auth/invalid-email': 'Barua pepe si sahihi.',
+    'auth/user-disabled': 'Akaunti hii imezimwa.',
+    'auth/user-not-found': 'Mtumiaji hapatikani.',
+    'auth/wrong-password': 'Neno la siri si sahihi.',
+    'auth/invalid-credential': 'Barua pepe au neno la siri si sahihi.',
+    'auth/invalid-login-credentials': 'Barua pepe au neno la siri si sahihi.',
+    'auth/too-many-requests': 'Umejaribu mara nyingi. Subiri dakika 5.',
+    'auth/network-request-failed': 'Tatizo la mtandao. Angalia internet.',
+    'auth/operation-not-allowed': 'Njia hii haijawashwa kwenye Firebase Console.',
+    'auth/admin-restricted-operation': 'Anonymous Auth haijawashwa kwenye Firebase Console.',
+    'auth/unauthorized-domain': 'Domain hii hairuhusiwi. Ongeza kwenye Firebase Console.',
+    'permission-denied': 'Huna ruhusa. Angalia Firestore Rules.',
+    'storage/unauthorized': 'Huna ruhusa kupakia picha. Angalia Storage Rules.',
+    'unavailable': 'Firebase haipatikani. Angalia internet.'
+  };
+  return map[code] || err.message || 'Tatizo lisilojulikana.';
+}
+
+function showLoginAlert(msg, type='error') {
+  const el = document.getElementById('loginAlert');
+  if (!el) return;
+  const colors = {
+    error: { bg: '#fef2f2', border: '#fecaca', color: '#991b1b' },
+    success: { bg: '#f0fdf4', border: '#bbf7d0', color: '#166534' },
+    info: { bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af' }
+  };
+  const c = colors[type] || colors.error;
+  el.style.display = 'block';
+  el.style.background = c.bg;
+  el.style.border = '1px solid ' + c.border;
+  el.style.color = c.color;
+  el.innerHTML = msg;
+}
+function hideLoginAlert() { const el = document.getElementById('loginAlert'); if (el) el.style.display = 'none'; }
+
+/* ═══════════════════════════════════════════════════════════
+   FIRESTORE OPERATIONS
+   ═══════════════════════════════════════════════════════════ */
+async function fetchAllUsers() {
+  try {
+    const snap = await db.collection(COL_USERS).get();
+    allUsersCache = snap.docs.map(d => ({ uid: d.id, ...d.data() }));
+  } catch (e) { console.warn('users fetch:', e.message); allUsersCache = []; }
+}
+async function fetchAllProducts() {
+  try {
+    const snap = await db.collection(COL_PRODUCTS).orderBy('createdAt', 'desc').get();
+    allProductsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch (e) { console.warn('products fetch:', e.message); allProductsCache = []; }
+}
+async function fetchAllChats() {
+  try {
+    const snap = await db.collection(COL_CHATS).orderBy('ts', 'desc').limit(500).get();
+    allChatsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch (e) { console.warn('chats fetch:', e.message); allChatsCache = []; }
+}
+
+function subscribeProducts() {
+  if (productsUnsubscribe) productsUnsubscribe();
+  productsUnsubscribe = db.collection(COL_PRODUCTS).orderBy('createdAt', 'desc').onSnapshot(snap => {
+    allProductsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    if (!currentUser) return;
+    if (currentPage === 'home') renderHomeProducts();
+    if (currentPage === 'categories') renderCategoryProducts();
+    if (currentPage === 'dashboard') renderDashboard();
+    if (currentPage === 'mylistings') renderMyListings();
+    if (currentPage === 'admin') renderAdmin();
+  }, err => console.warn('products snap:', err.message));
+}
+
+function subscribeChats() {
+  if (chatsUnsubscribe) chatsUnsubscribe();
+  if (!currentUser) return;
+  chatsUnsubscribe = db.collection(COL_CHATS)
+    .where('participants', 'array-contains', currentUser.uid)
+    .onSnapshot(snap => {
+      const freshChats = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      allChatsCache = freshChats;
+      updateAdminUnreadBadge();
+      if (currentPage === 'messages') renderChatList();
+      if (currentPage === 'chat' && activeChat) renderChatMessages();
+    }, err => console.warn('chats snap:', err.message));
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COUNT UNREAD / BADGE
+   ═══════════════════════════════════════════════════════════ */
+function countUnreadForAdmin() {
+  if (!currentUser || currentUser.role !== 'admin') return 0;
+  return allChatsCache.filter(m => m.receiverId === currentUser.uid && !m.read).length;
+}
+function updateAdminUnreadBadge() {
+  const badge = document.getElementById('msgRedDot');
+  if (!badge) return;
+  const count = countUnreadForAdmin();
+  if (count > 0 && currentUser && currentUser.role === 'admin') {
+    badge.textContent = count > 99 ? '99+' : count;
+    badge.style.display = 'flex';
+  } else badge.style.display = 'none';
+}
+async function markMessagesAsRead(otherUid) {
+  if (!currentUser || currentUser.role !== 'admin') return;
+  const batch = db.batch();
+  let changed = false;
+  for (const m of allChatsCache) {
+    if (m.receiverId === currentUser.uid && m.senderId === otherUid && !m.read) {
+      batch.update(db.collection(COL_CHATS).doc(m.id), { read: true });
+      changed = true;
+    }
+  }
+  if (changed) await batch.commit();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LOAD / SYNC
+   ═══════════════════════════════════════════════════════════ */
+async function loadAllData() {
+  setConn('syncing', 'Inasawazisha...');
+  try {
+    await Promise.all([fetchAllProducts(), fetchAllUsers(), fetchAllChats()]);
+    setConn('online', 'Firebase tayari');
+  } catch (e) {
+    console.warn(e);
+    setConn('offline', 'Haipatikani');
+  }
+}
+function syncFromStorage(showAlert) {
+  setConn('syncing', 'Inasawazisha...');
+  loadAllData().then(() => {
+    if (showAlert) alert('✅ Data imesawazishwa!\n\nWatumiaji: ' + allUsersCache.length + '\nBidhaa: ' + allProductsCache.length + '\nChats: ' + allChatsCache.length);
+    if (currentUser) {
+      renderHomeProducts(); renderCategoryProducts();
+      if (currentUser.role !== 'buyer') { renderDashboard(); renderMyListings(); }
+      if (currentUser.role === 'admin') renderAdmin();
+    }
+    updateAdminUnreadBadge();
+  });
+}
+function exportData() {
+  const data = { users: allUsersCache, products: allProductsCache, chats: allChatsCache, exportedAt: new Date().toISOString() };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'soko-app-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ROLE TOGGLE
+   ═══════════════════════════════════════════════════════════ */
+function setRole(role) {
+  selectedRole = role;
+  document.querySelectorAll('.role-toggle .btn').forEach(b => b.classList.toggle('active', b.dataset.role === role));
+  const fieldsWrap = document.getElementById('loginFieldsWrapper');
+  const passWrap = document.getElementById('passwordWrapper');
+  const hint = document.getElementById('buyerHint');
+  const emailInput = document.getElementById('loginEmail');
+  const passInput = document.getElementById('loginPassword');
+  const credsHint = document.getElementById('credsHint');
+  const credsAdmin = document.getElementById('credsAdmin');
+  const credsSeller = document.getElementById('credsSeller');
+  hideLoginAlert();
+  if (credsHint) credsHint.style.display = 'none';
+  if (credsAdmin) credsAdmin.style.display = 'none';
+  if (credsSeller) credsSeller.style.display = 'none';
+
+  if (role === 'buyer') {
+    fieldsWrap.style.display = 'none';
+    passWrap.style.display = 'none';
+    hint.style.display = 'block';
+    emailInput.removeAttribute('required');
+    passInput.removeAttribute('required');
+  } else {
+    fieldsWrap.style.display = 'block';
+    passWrap.style.display = 'block';
+    hint.style.display = 'none';
+    emailInput.setAttribute('required', 'required');
+    passInput.setAttribute('required', 'required');
+    if (credsHint) credsHint.style.display = 'block';
+    if (role === 'admin' && credsAdmin) credsAdmin.style.display = 'block';
+    if (role === 'seller' && credsSeller) credsSeller.style.display = 'block';
+  }
+  emailInput.value = ''; passInput.value = '';
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LOGIN / LOGOUT (Firebase Auth)
+   ═══════════════════════════════════════════════════════════ */
+async function handleLogin(e) {
+  e.preventDefault();
+  hideLoginAlert();
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Inaingia...';
+
+  try {
+    if (selectedRole === 'buyer') {
+      // Anonymous auth kwa mteja
+      const cred = await auth.signInAnonymously();
+      currentUser = {
+        uid: cred.user.uid,
+        name: 'Mteja',
+        email: '',
+        phone: '',
+        role: 'buyer',
+        isAnonymous: true
+      };
+      await loadAllData();
+      subscribeProducts();
+      subscribeChats();
+      showApp();
+      setConn('online', 'Firebase tayari');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="bi bi-box-arrow-in-right me-1"></i> Ingia';
+      return false;
+    }
+
+    // Admin / Seller — email + password
+    const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    const password = document.getElementById('loginPassword').value.trim();
+    if (!email || !password) { showLoginAlert('Weka barua pepe na neno la siri.'); btn.disabled = false; btn.innerHTML = '<i class="bi bi-box-arrow-in-right me-1"></i> Ingia'; return false; }
+
+    const cred = await auth.signInWithEmailAndPassword(email, password);
+    const userDocRef = db.collection(COL_USERS).doc(cred.user.uid);
+    const userDoc = await userDocRef.get();
+
+    let userData;
+    if (userDoc.exists) {
+      userData = userDoc.data();
+      if (selectedRole === 'admin' && userData.role !== 'admin') throw new Error('Mtumiaji huyu si Admin.');
+      if (selectedRole === 'seller' && userData.role !== 'seller' && userData.role !== 'admin') throw new Error('Mtumiaji huyu si Muuzaji.');
+    } else {
+      // Auto-create user doc kwa kutumia role iliyochaguliwa
+      userData = {
+        name: email.split('@')[0],
+        email,
+        phone: '',
+        role: selectedRole,
+        createdAt: Date.now()
+      };
+      await userDocRef.set(userData);
+      userData.uid = cred.user.uid;
+    }
+
+    currentUser = { uid: cred.user.uid, ...userData };
+    await loadAllData();
+    subscribeProducts();
+    subscribeChats();
+    showApp();
+    setConn('online', 'Firebase tayari');
+  } catch (err) {
+    console.error('Login:', err);
+    showLoginAlert('❌ ' + translateError(err));
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '<i class="bi bi-box-arrow-in-right me-1"></i> Ingia';
+  return false;
+}
+
+async function handleLogout() {
+  if (!confirm('Toka?')) return;
+  try { await auth.signOut(); } catch(e) {}
+  if (productsUnsubscribe) { productsUnsubscribe(); productsUnsubscribe = null; }
+  if (chatsUnsubscribe) { chatsUnsubscribe(); chatsUnsubscribe = null; }
+  currentUser = null;
+  currentCategory = '';
+  activeChat = null;
+  uploadedImages = [];
+  allProductsCache = [];
+  allUsersCache = [];
+  allChatsCache = [];
+  document.getElementById('authPage').style.display = 'flex';
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('active');
+  document.getElementById('loginForm').reset();
+  const chatPage = document.getElementById('page-chat');
+  if (chatPage) chatPage.remove();
+  setRole('buyer');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SHOW APP / NAVIGATE
+   ═══════════════════════════════════════════════════════════ */
+function showApp() {
+  document.getElementById('authPage').style.display = 'none';
+  document.getElementById('mainContent').style.display = 'block';
+
+  const isAdmin = currentUser.role === 'admin';
+  const isSeller = currentUser.role === 'seller';
+  const isBuyer = currentUser.role === 'buyer';
+  const label = isAdmin ? 'Admin' : (isSeller ? 'Muuzaji' : 'Mteja');
+  const initial = (currentUser.name || 'U').charAt(0).toUpperCase();
+
+  document.getElementById('userAvatar').textContent = initial;
+  document.getElementById('sidebarRoleLabel').textContent = 'TZ • ' + label;
+
+  document.querySelectorAll('.seller-only').forEach(el => el.style.display = (isAdmin || isSeller) ? 'flex' : 'none');
+  document.getElementById('sellerNavLabel').style.display = (isAdmin || isSeller) ? 'block' : 'none';
+  document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? 'flex' : 'none');
+  document.getElementById('adminNavLabel').style.display = isAdmin ? 'block' : 'none';
+
+  updateAdminUnreadBadge();
+
+  if (isBuyer) navigate('home');
+  else if (isSeller) navigate('dashboard');
+  else navigate('admin');
+}
+
+function navigate(page) {
+  if (!currentUser) return;
+  if (currentUser.role === 'buyer' && ['dashboard','addproduct','mylistings','admin','messages'].includes(page)) page = 'home';
+  if (currentUser.role === 'seller' && (page === 'admin' || page === 'messages')) page = 'dashboard';
+  currentPage = page;
+
+  document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.sidebar .nav-link').forEach(link => link.classList.toggle('active', link.dataset.page === page));
+
+  const titles = { home:'Nyumbani', categories:'Kategoria', dashboard:'Dashibodi', addproduct:'Ongeza Bidhaa', mylistings:'Bidhaa Zangu', messages:'Ujumbe', chat:'Chat', profile:'Wasifu Wangu', admin:'Admin Panel' };
+  document.getElementById('pageTitle').textContent = titles[page] || 'Soko App';
+
+  if (page === 'home') renderHomeProducts();
+  if (page === 'categories') renderCategoryProducts();
+  if (page === 'dashboard') renderDashboard();
+  if (page === 'mylistings') renderMyListings();
+  if (page === 'addproduct') resetProductForm();
+  if (page === 'messages') renderChatList();
+  if (page === 'profile') renderProfile();
+  if (page === 'admin') renderAdmin();
+
+  closeSidebar();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('active');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('active');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CATEGORIES
+   ═══════════════════════════════════════════════════════════ */
+function renderCategories() {
+  const html = CATEGORIES.map(c => `
+    <div class="cat-item" onclick="openCategory('${c.name}')">
+      <i class="bi ${c.icon}" style="color:${c.color};"></i>
+      <span>${c.name}</span>
+    </div>
+  `).join('');
+  const h = document.getElementById('homeCategories');
+  const a = document.getElementById('allCategories');
+  if (h) h.innerHTML = html;
+  if (a) a.innerHTML = html;
+}
+function openCategory(name) { currentCategory = name; navigate('categories'); }
+
+/* ═══════════════════════════════════════════════════════════
+   PRODUCTS DISPLAY
+   ═══════════════════════════════════════════════════════════ */
+function getSellerPhone(product) {
+  if (!product) return '';
+  if (product.sellerPhone && String(product.sellerPhone).trim()) return String(product.sellerPhone).trim();
+  if (product.sellerId) {
+    const seller = allUsersCache.find(u => u.uid === product.sellerId);
+    if (seller && seller.phone && String(seller.phone).trim()) return String(seller.phone).trim();
+  }
+  return '';
+}
+function getSellerName(product) {
+  if (!product) return 'Muuzaji';
+  if (product.sellerName && String(product.sellerName).trim()) return String(product.sellerName).trim();
+  if (product.sellerId) {
+    const seller = allUsersCache.find(u => u.uid === product.sellerId);
+    if (seller && seller.name) return String(seller.name).trim();
+  }
+  return 'Muuzaji';
+}
+
+function productCardHTML(p) {
+  const img = (p.images && p.images[0])
+    ? `<img src="${p.images[0]}" onerror="this.style.display='none';this.parentElement.innerHTML='<i class=\\'bi bi-image\\'></i>'" />`
+    : `<i class="bi bi-image"></i>`;
+  const phone = getSellerPhone(p);
+  return `
+    <div class="product-card" onclick="viewProduct('${p.id}')">
+      <div class="img-box">
+        ${img}
+        ${p.featured ? '<span class="badge-feat">⭐ Featured</span>' : ''}
+        ${p.sold ? '<span class="badge-sold">IMEUZWA</span>' : ''}
+      </div>
+      <div class="body">
+        <div class="title">${esc(p.title)}</div>
+        <div class="price">${formatCurrency(p.price)}</div>
+        <div class="loc"><i class="bi bi-geo-alt-fill"></i>${esc(p.location || 'TZ')}</div>
+        <div class="loc" style="color:var(--primary);font-weight:700;">
+          <i class="bi bi-telephone-fill"></i>${phone ? esc(phone) : 'Haipo'}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderHomeProducts() {
+  const grid = document.getElementById('homeProductsGrid');
+  if (!grid) return;
+  const search = (document.getElementById('homeSearch')?.value || '').toLowerCase();
+  let list = allProductsCache.slice();
+  if (search) list = list.filter(p => (p.title||'').toLowerCase().includes(search) || (p.location||'').toLowerCase().includes(search) || (p.category||'').toLowerCase().includes(search));
+  if (!list.length) { grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${search?'zinazolingana':'bado'}</p></div>`; return; }
+  grid.innerHTML = list.map(productCardHTML).join('');
+}
+function renderCategoryProducts() {
+  const grid = document.getElementById('catProductsGrid');
+  const title = document.getElementById('catTitle');
+  if (!grid) return;
+  const search = (document.getElementById('catSearch')?.value || '').toLowerCase();
+  let list = allProductsCache.slice();
+  if (currentCategory) list = list.filter(p => p.category === currentCategory);
+  if (search) list = list.filter(p => (p.title || '').toLowerCase().includes(search));
+  title.textContent = currentCategory ? `${currentCategory} (${list.length})` : `Bidhaa Zote (${list.length})`;
+  if (!list.length) { grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${currentCategory ? 'kwenye '+currentCategory : ''}</p></div>`; return; }
+  grid.innerHTML = list.map(productCardHTML).join('');
+}
+
+function viewProduct(id) {
+  const p = allProductsCache.find(x => x.id === id);
+  if (!p) return alert('Bidhaa haipatikani.');
+
+  const displayName = getSellerName(p);
+  const displayPhone = getSellerPhone(p);
+  const normalizedPhone = displayPhone ? displayPhone.replace(/[^0-9]/g, '') : '';
+  const images = p.images || [];
+  let gallery;
+  if (!images.length) {
+    gallery = '<div class="text-center py-5" style="background:#f1f5f9;border-radius:12px;"><i class="bi bi-image" style="font-size:60px;color:#94a3b8;"></i></div>';
+  } else {
+    const slides = images.map((img, i) => `<div class="carousel-item ${i===0?'active':''}"><img src="${img}" class="detail-modal-img" /></div>`).join('');
+    gallery = `<div id="pdCarousel" class="carousel slide" data-bs-ride="carousel"><div class="carousel-inner">${slides}</div>
+      ${images.length>1?`<button class="carousel-control-prev" type="button" data-bs-target="#pdCarousel" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span></button><button class="carousel-control-next" type="button" data-bs-target="#pdCarousel" data-bs-slide="next"><span class="carousel-control-next-icon"></span></button>`:''}
+    </div>`;
+  }
+
+  document.getElementById('modalTitle').textContent = p.title;
+  const phoneSpecRow = displayPhone
+    ? `<div class="phone-spec-row"><span class="k"><i class="bi bi-telephone-fill me-2"></i>Simu</span><a href="tel:${normalizedPhone}" class="v"><i class="bi bi-telephone-fill"></i>${esc(displayPhone)}</a></div>`
+    : `<div class="phone-spec-row" style="background:#fef2f2;border-color:#ef4444;"><span class="k" style="color:#991b1b;"><i class="bi bi-telephone-x me-2"></i>Simu</span><span class="v" style="color:#991b1b;font-size:14px;">Haipo</span></div>`;
+
+  document.getElementById('modalBody').innerHTML = `
+    ${gallery}
+    <div class="mt-3">
+      <h4 class="fw-bold" style="color:var(--primary);">${formatCurrency(p.price)}</h4>
+      <p class="text-muted mb-2" style="font-size:14px;">${esc(p.description || '')}</p>
+      <div class="spec-row d-flex justify-content-between"><span class="k">Kategoria</span><span class="v">${esc(p.category || '-')}</span></div>
+      <div class="spec-row d-flex justify-content-between"><span class="k">Eneo</span><span class="v">${esc(p.location || '-')}</span></div>
+      <div class="spec-row d-flex justify-content-between"><span class="k">Hali</span><span class="v">${esc(p.condition || 'mpya')}</span></div>
+      <div class="spec-row d-flex justify-content-between"><span class="k">Muuzaji</span><span class="v">${esc(displayName)}</span></div>
+      ${phoneSpecRow}
+    </div>
+  `;
+
+  const chatBtn = document.getElementById('modalChatBtn');
+  if (p.sellerId === currentUser.uid) chatBtn.style.display = 'none';
+  else {
+    chatBtn.style.display = 'inline-block';
+    chatBtn.onclick = () => {
+      bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
+      openChat(p.sellerId, displayName, p.id, p.title);
+    };
+  }
+
+  const footerPhoneLink = document.getElementById('footerPhoneLink');
+  const footerPhoneText = document.getElementById('footerPhoneText');
+  const footerPhoneEmpty = document.getElementById('footerPhoneEmpty');
+  if (displayPhone) {
+    footerPhoneLink.style.display = 'inline-flex';
+    footerPhoneEmpty.style.display = 'none';
+    footerPhoneText.textContent = displayPhone;
+    footerPhoneLink.href = 'tel:' + normalizedPhone;
+  } else {
+    footerPhoneLink.style.display = 'none';
+    footerPhoneEmpty.style.display = 'inline-flex';
+  }
+
+  new bootstrap.Modal(document.getElementById('productModal')).show();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   IMAGE UPLOAD (Firebase Storage)
+   ═══════════════════════════════════════════════════════════ */
+function handleImageSelect(e) {
+  const files = Array.from(e.target.files || []);
+  if (uploadedImages.length + files.length > 5) { alert('Upeo wa picha ni 5.'); e.target.value = ''; return; }
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      compressImage(ev.target.result).then(dataUrl => {
+        uploadedImages.push(dataUrl);
+        renderImagePreviews();
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+  e.target.value = '';
+}
+function compressImage(dataUrl, maxW = 700, quality = 0.7) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      let w = img.width, h = img.height;
+      if (w > maxW) { h = (maxW / w) * h; w = maxW; }
+      canvas.width = w; canvas.height = h;
+      canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+      resolve(canvas.toDataURL('image/jpeg', quality));
+    };
+    img.onerror = reject;
+    img.src = dataUrl;
+  });
+}
+function renderImagePreviews() {
+  const c = document.getElementById('imagePreview');
+  c.innerHTML = uploadedImages.map((img, i) => `<div class="img-preview"><img src="${img}" /><button type="button" class="rm" onclick="removeImage(${i})">×</button></div>`).join('');
+}
+function removeImage(i) { uploadedImages.splice(i, 1); renderImagePreviews(); }
+
+async function uploadImagesToStorage(images, productId) {
+  const urls = [];
+  for (let i = 0; i < images.length; i++) {
+    const img = images[i];
+    if (img.startsWith('http://') || img.startsWith('https://')) { urls.push(img); continue; }
+    const ref = storage.ref(`soko_products/${productId}/img_${i}_${Date.now()}.jpg`);
+    await ref.putString(img, 'data_url');
+    const url = await ref.getDownloadURL();
+    urls.push(url);
+  }
+  return urls;
+}
+
+function resetProductForm() {
+  document.getElementById('formTitle').textContent = 'Ongeza Bidhaa Mpya';
+  document.getElementById('submitText').textContent = 'Publish Bidhaa';
+  document.getElementById('editProductId').value = '';
+  ['pTitle','pPrice','pDesc','pSellerPhone','pSellerName'].forEach(id => document.getElementById(id).value = '');
+  ['pCategory','pLocation'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('pCondition').value = 'mpya';
+  if (currentUser && currentUser.phone) document.getElementById('pSellerPhone').value = currentUser.phone;
+  if (currentUser && currentUser.name) document.getElementById('pSellerName').value = currentUser.name;
+  uploadedImages = [];
+  renderImagePreviews();
+}
+
+async function handleAddProduct(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const old = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Inahifadhi...';
+
+  try {
+    const editId = document.getElementById('editProductId').value;
+    const title = document.getElementById('pTitle').value.trim();
+    const category = document.getElementById('pCategory').value;
+    const price = parseFloat(document.getElementById('pPrice').value) || 0;
+    const location = document.getElementById('pLocation').value;
+    const condition = document.getElementById('pCondition').value;
+    const description = document.getElementById('pDesc').value.trim();
+    const sellerPhone = document.getElementById('pSellerPhone').value.trim();
+    const sellerName = document.getElementById('pSellerName').value.trim() || currentUser.name || 'Muuzaji';
+
+    if (!title || !category || !price || !location || !description || !sellerPhone) {
+      alert('Jaza sehemu zote zenye *');
+      btn.disabled = false; btn.innerHTML = old;
+      return false;
+    }
+
+    const productId = editId || db.collection(COL_PRODUCTS).doc().id;
+    const imageUrls = await uploadImagesToStorage(uploadedImages, productId);
+
+    const baseData = {
+      title, category, price, location, condition, description,
+      images: imageUrls,
+      sellerId: currentUser.uid,
+      sellerName, sellerPhone,
+      updatedAt: Date.now()
+    };
+
+    if (editId) {
+      await db.collection(COL_PRODUCTS).doc(editId).update(baseData);
+    } else {
+      await db.collection(COL_PRODUCTS).doc(productId).set({
+        ...baseData, createdAt: Date.now(), featured: false, sold: false
+      });
+    }
+
+    alert('✅ Bidhaa imehifadhiwa!');
+    navigate('mylistings');
+  } catch (err) {
+    console.error(err);
+    alert('Tatizo: ' + translateError(err));
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = old;
+  return false;
+}
+
+function editProduct(id) {
+  const p = allProductsCache.find(x => x.id === id);
+  if (!p) return;
+  navigate('addproduct');
+  setTimeout(() => {
+    document.getElementById('formTitle').textContent = 'Hariri Bidhaa';
+    document.getElementById('submitText').textContent = 'Hifadhi Mabadiliko';
+    document.getElementById('editProductId').value = id;
+    document.getElementById('pTitle').value = p.title || '';
+    document.getElementById('pCategory').value = p.category || '';
+    document.getElementById('pPrice').value = p.price || '';
+    document.getElementById('pLocation').value = p.location || '';
+    document.getElementById('pCondition').value = p.condition || 'mpya';
+    document.getElementById('pDesc').value = p.description || '';
+    document.getElementById('pSellerPhone').value = p.sellerPhone || getSellerPhone(p) || '';
+    document.getElementById('pSellerName').value = p.sellerName || getSellerName(p) || '';
+    uploadedImages = [...(p.images || [])];
+    renderImagePreviews();
+  }, 100);
+}
+
+async function deleteProduct(id) {
+  if (!confirm('Futa bidhaa hii?')) return;
+  try {
+    await db.collection(COL_PRODUCTS).doc(id).delete();
+    alert('✅ Imefutwa');
+  } catch (err) { alert('Tatizo: ' + translateError(err)); }
+}
+
+async function toggleSold(id) {
+  const p = allProductsCache.find(x => x.id === id);
+  if (!p) return;
+  try { await db.collection(COL_PRODUCTS).doc(id).update({ sold: !p.sold }); } catch(e) { alert(e.message); }
+}
+async function toggleFeatured(id) {
+  const p = allProductsCache.find(x => x.id === id);
+  if (!p) return;
+  try { await db.collection(COL_PRODUCTS).doc(id).update({ featured: !p.featured }); } catch(e) { alert(e.message); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   DASHBOARD / MY LISTINGS / ADMIN
+   ═══════════════════════════════════════════════════════════ */
+function renderDashboard() {
+  const mine = allProductsCache.filter(p => p.sellerId === currentUser.uid);
+  document.getElementById('statTotal').textContent = mine.length;
+  document.getElementById('statActive').textContent = mine.filter(p => !p.sold).length;
+  document.getElementById('statFeatured').textContent = mine.filter(p => p.featured).length;
+  document.getElementById('statValue').textContent = formatCurrency(mine.reduce((s, p) => s + (p.price || 0), 0));
+
+  const recent = mine.slice(0, 4);
+  const r = document.getElementById('recentProducts');
+  if (!recent.length) r.innerHTML = `<div class="empty-state"><i class="bi bi-box-seam"></i><p>Hujauza bidhaa bado.</p></div>`;
+  else r.innerHTML = `<div class="product-grid">${recent.map(productCardHTML).join('')}</div>`;
+}
+
+function renderMyListings() {
+  const grid = document.getElementById('myListingsGrid');
+  if (!grid) return;
+  const mine = allProductsCache.filter(p => p.sellerId === currentUser.uid);
+  if (!mine.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa bado.</p><button class="btn btn-primary mt-2" onclick="navigate('addproduct')">Ongeza Sasa</button></div>`;
+    return;
+  }
+  grid.innerHTML = mine.map(p => {
+    const phone = getSellerPhone(p);
+    return `
+      <div class="product-card">
+        <div class="img-box" onclick="viewProduct('${p.id}')" style="cursor:pointer;">
+          ${p.images && p.images[0] ? `<img src="${p.images[0]}" />` : '<i class="bi bi-image"></i>'}
+          ${p.featured ? '<span class="badge-feat">⭐</span>' : ''}
+          ${p.sold ? '<span class="badge-sold">IMEUZWA</span>' : ''}
+        </div>
+        <div class="body">
+          <div class="title">${esc(p.title)}</div>
+          <div class="price">${formatCurrency(p.price)}</div>
+          <div class="small text-muted mt-1"><i class="bi bi-telephone"></i> ${esc(phone || '-')}</div>
+          <div class="d-flex gap-1 mt-2 flex-wrap">
+            <button class="btn btn-sm btn-outline-primary" onclick="editProduct('${p.id}')" style="font-size:11px;padding:2px 8px;">✏️</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${p.id}')" style="font-size:11px;padding:2px 8px;">🗑️</button>
+            <button class="btn btn-sm btn-outline-success" onclick="toggleSold('${p.id}')" style="font-size:11px;padding:2px 8px;">${p.sold ? '🔵' : '✅'}</button>
+            <button class="btn btn-sm btn-outline-warning" onclick="toggleFeatured('${p.id}')" style="font-size:11px;padding:2px 8px;">${p.featured ? '⭐' : '☆'}</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderAdmin() {
+  if (!currentUser || currentUser.role !== 'admin') return;
+  const users = allUsersCache;
+  const products = allProductsCache;
+  const featured = products.filter(p => p.featured).length;
+  const totalValue = products.reduce((s, p) => s + (p.price || 0), 0);
+
+  document.getElementById('adminStatUsers').textContent = users.length;
+  document.getElementById('adminStatProducts').textContent = products.length;
+  document.getElementById('adminStatFeatured').textContent = featured;
+  document.getElementById('adminStatValue').textContent = formatCurrency(totalValue);
+
+  document.getElementById('adminUsersTable').innerHTML = users.map(u => `
+    <tr>
+      <td>${esc(u.name)}</td>
+      <td>${esc(u.email || '-')}</td>
+      <td>${esc(u.phone || '-')}</td>
+      <td><span class="badge bg-primary">${u.role}</span></td>
+      <td>
+        <button class="btn btn-sm btn-outline-primary" onclick="openChat('${u.uid}', '${esc(u.name).replace(/'/g,"\\'")}', '', '')">💬</button>
+        ${u.role !== 'admin' ? `<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('${u.uid}')">🗑️</button>` : ''}
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="5" class="text-center text-muted">Hakuna watumiaji</td></tr>';
+
+  document.getElementById('adminProductsTable').innerHTML = products.map(p => `
+    <tr>
+      <td>${esc(p.title)}</td>
+      <td>${formatCurrency(p.price)}</td>
+      <td>${esc(getSellerName(p))}</td>
+      <td>${esc(getSellerPhone(p) || '-')}</td>
+      <td>
+        <button class="btn btn-sm btn-outline-warning" onclick="toggleFeatured('${p.id}')">${p.featured ? '⭐' : '☆'}</button>
+        <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${p.id}')">🗑️</button>
+      </td>
+    </tr>
+  `).join('') || '<tr><td colspan="5" class="text-center text-muted">Hakuna bidhaa</td></tr>';
+}
+
+async function deleteUser(uid) {
+  if (!confirm('Futa mtumiaji huyu kwenye Firestore?')) return;
+  try {
+    await db.collection(COL_USERS).doc(uid).delete();
+    await fetchAllUsers();
+    renderAdmin();
+    alert('✅ Imefutwa (Auth user bado yupo kwenye Firebase Authentication)');
+  } catch (err) { alert('Tatizo: ' + translateError(err)); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CHAT
+   ═══════════════════════════════════════════════════════════ */
+function openChat(otherUid, otherName, productId, productTitle) {
+  if (!currentUser) return;
+  if (otherUid === currentUser.uid) return alert('Hauwezi kujichat mwenyewe.');
+  activeChat = { otherUid, otherName: otherName || 'Mtumiaji', productId, productTitle };
+
+  if (currentUser.role === 'admin') markMessagesAsRead(otherUid);
+
+  document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
+  let chatPage = document.getElementById('page-chat');
+  if (!chatPage) {
+    chatPage = document.createElement('section');
+    chatPage.id = 'page-chat';
+    chatPage.className = 'page-section';
+    chatPage.innerHTML = `
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <button class="btn btn-sm btn-light" onclick="navigate('${currentUser.role === 'admin' ? 'messages' : 'home'}')"><i class="bi bi-arrow-left"></i></button>
+        <h6 class="fw-bold mb-0" id="chatWithName">Chat</h6>
+      </div>
+      <div class="chat-container">
+        <div class="chat-msgs" id="chatMsgs"></div>
+        <div class="chat-input">
+          <input type="text" id="chatInput" placeholder="Andika ujumbe..." onkeydown="if(event.key==='Enter')sendMsg()" />
+          <button onclick="sendMsg()"><i class="bi bi-send-fill"></i></button>
+        </div>
+      </div>
+    `;
+    document.querySelector('.content').appendChild(chatPage);
+  }
+  chatPage.classList.add('active');
+  document.getElementById('pageTitle').textContent = 'Chat';
+  document.getElementById('chatWithName').textContent = otherName || 'Mtumiaji';
+  renderChatMessages();
+}
+
+function renderChatMessages() {
+  if (!activeChat || !currentUser) return;
+  const box = document.getElementById('chatMsgs');
+  if (!box) return;
+  const cid = chatIdFor(currentUser.uid, activeChat.otherUid);
+  const msgs = allChatsCache.filter(m => m.chatId === cid).sort((a, b) => a.ts - b.ts);
+  if (!msgs.length) { box.innerHTML = '<div class="text-center text-muted small py-3">Anza mazungumzo...</div>'; return; }
+  box.innerHTML = msgs.map(m => {
+    const isMe = m.senderId === currentUser.uid;
+    return `<div class="msg-bubble ${isMe ? 'msg-me' : 'msg-other'}">${!isMe ? `<span class="msg-sender">${esc(m.senderName || 'Mtumiaji')}</span>` : ''}${esc(m.text)}</div>`;
+  }).join('');
+  box.scrollTop = box.scrollHeight;
+}
+
+async function sendMsg() {
+  if (!currentUser || !activeChat) return;
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  const cid = chatIdFor(currentUser.uid, activeChat.otherUid);
+  try {
+    await db.collection(COL_CHATS).add({
+      chatId: cid,
+      participants: [currentUser.uid, activeChat.otherUid],
+      senderId: currentUser.uid,
+      senderName: currentUser.name || 'Mtumiaji',
+      senderRole: currentUser.role,
+      receiverId: activeChat.otherUid,
+      receiverName: activeChat.otherName || 'Mtumiaji',
+      text,
+      productId: activeChat.productId || '',
+      productTitle: activeChat.productTitle || '',
+      ts: Date.now(),
+      read: false
+    });
+  } catch (err) { alert('Tatizo: ' + translateError(err)); }
+}
+
+function renderChatList() {
+  if (!currentUser) return;
+  const list = document.getElementById('chatListView');
+  const uid = currentUser.uid;
+  const myMsgs = allChatsCache.filter(m => m.senderId === uid || m.receiverId === uid);
+
+  const grouped = {};
+  myMsgs.forEach(m => { if (!grouped[m.chatId]) grouped[m.chatId] = []; grouped[m.chatId].push(m); });
+
+  const chatList = Object.keys(grouped).map(cid => {
+    const msgs = grouped[cid].sort((a, b) => b.ts - a.ts);
+    const last = msgs[0];
+    const otherUid = last.senderId === uid ? last.receiverId : last.senderId;
+    const otherName = last.senderId === uid ? last.receiverName : last.senderName;
+    const unread = msgs.filter(m => m.senderId === otherUid && m.receiverId === uid && !m.read).length;
+    return { chatId: cid, otherUid, otherName, lastMessage: last.text, lastTime: last.ts, productTitle: last.productTitle, unread, count: msgs.length };
+  }).sort((a, b) => b.lastTime - a.lastTime);
+
+  const clearAllBtn = document.getElementById('clearAllBtn');
+  if (clearAllBtn) clearAllBtn.style.display = chatList.length > 0 ? 'inline-flex' : 'none';
+
+  if (!chatList.length) {
+    list.innerHTML = `<div class="empty-state"><i class="bi bi-envelope-open"></i><p>Hakuna ujumbe bado.</p><small>Ujumbe kutoka kwa wateja utaonekana hapa.</small></div>`;
+    return;
+  }
+
+  let html = chatList.map(c => `
+    <div class="chat-list-item ${c.unread > 0 ? 'unread' : ''}">
+      <div class="avatar-sm" onclick="openChat('${c.otherUid}', '${esc(c.otherName).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">${esc(c.otherName).charAt(0).toUpperCase()}</div>
+      <div class="flex-grow-1" onclick="openChat('${c.otherUid}', '${esc(c.otherName).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">
+        <div class="fw-bold">${esc(c.otherName)} ${c.count > 1 ? `<span class="text-muted small">(${c.count})</span>` : ''}</div>
+        <div class="small text-muted text-truncate" style="max-width:260px;">${esc(c.lastMessage || '')}</div>
+      </div>
+      <div class="action-btns">
+        ${c.unread > 0 ? `<span class="unread-badge">${c.unread}</span>` : ''}
+        <button class="delete-btn" onclick="event.stopPropagation(); deleteChat('${c.otherUid}', '${esc(c.otherName).replace(/'/g,"\\'")}')" title="Futa mazungumzo"><i class="bi bi-trash-fill"></i></button>
+      </div>
+    </div>
+  `).join('');
+
+  if (currentUser.role === 'admin') {
+    const users = allUsersCache.filter(u => u.uid !== uid && u.role !== 'admin');
+    if (users.length) {
+      html += `<h6 class="fw-bold mt-4 mb-3"><i class="bi bi-people-fill me-2"></i>Watumiaji Wengine</h6>
+        ${users.map(u => `
+          <div class="chat-list-item">
+            <div class="avatar-sm" onclick="openChat('${u.uid}', '${esc(u.name).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">${esc(u.name).charAt(0).toUpperCase()}</div>
+            <div class="flex-grow-1" onclick="openChat('${u.uid}', '${esc(u.name).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">
+              <div class="fw-bold">${esc(u.name)}</div>
+              <div class="small text-muted">${esc(u.email || '-')} • ${u.role}</div>
+            </div>
+            <div class="action-btns"><i class="bi bi-chat-dots text-primary"></i></div>
+          </div>
+        `).join('')}`;
+    }
+  }
+  list.innerHTML = html;
+}
+
+async function deleteChat(otherUid, otherName) {
+  if (!currentUser) return;
+  if (!confirm(`Futa mazungumzo yote na "${otherName}"?`)) return;
+  const cid = chatIdFor(currentUser.uid, otherUid);
+  try {
+    const snap = await db.collection(COL_CHATS).where('chatId', '==', cid).get();
+    const batch = db.batch();
+    snap.docs.forEach(d => batch.delete(d.ref));
+    await batch.commit();
+    alert(`✅ Ujumbe ${snap.size} umefutwa.`);
+  } catch (err) { alert('Tatizo: ' + translateError(err)); }
+}
+
+async function clearAllChats() {
+  if (!currentUser || currentUser.role !== 'admin') return;
+  if (!confirm('⚠️ Futa mazungumzo YOTE?')) return;
+  if (!confirm('Una uhakika kabisa?')) return;
+  try {
+    const snap = await db.collection(COL_CHATS).get();
+    const batch = db.batch();
+    snap.docs.forEach(d => batch.delete(d.ref));
+    await batch.commit();
+    alert(`✅ Ujumbe ${snap.size} wote umefutwa.`);
+  } catch (err) { alert('Tatizo: ' + translateError(err)); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PROFILE
+   ═══════════════════════════════════════════════════════════ */
+function renderProfile() {
+  const initial = (currentUser.name || 'U').charAt(0).toUpperCase();
+  document.getElementById('profileAvatar').textContent = initial;
+  document.getElementById('profileName').textContent = currentUser.name || 'Mtumiaji';
+  document.getElementById('profileEmail').textContent = currentUser.email || (currentUser.isAnonymous ? '(Mteja asiyejulikana)' : 'Haipo');
+  document.getElementById('profileRole').textContent = currentUser.role === 'admin' ? '👨‍💼 Admin' : (currentUser.role === 'seller' ? '🏢 Muuzaji' : '👤 Mteja');
+  document.getElementById('pInfoName').textContent = currentUser.name || '-';
+  document.getElementById('pInfoEmail').textContent = currentUser.email || '-';
+  document.getElementById('pInfoPhone').textContent = currentUser.phone || '-';
+  document.getElementById('pInfoRole').textContent = currentUser.role === 'admin' ? 'Admin' : (currentUser.role === 'seller' ? 'Muuzaji' : 'Mteja');
+}
+
+/* ═══════════════════════════════════════════════════════════
+   INIT
+   ═══════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  renderCategories();
+  setRole('buyer');
+  setConn('syncing', 'Inaunganisha...');
+  console.log('🛒 Soko App (Firebase version) imeanza!');
+  console.log('💡 Kama kuingia kunashindwa, angalia Console (F12).');
+});
+</script>
+
+</body>
+</html>
