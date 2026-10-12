@@ -19,19 +19,10 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 .auth-card{background:#fff;border-radius:24px;padding:36px 32px;max-width:460px;width:100%;box-shadow:0 20px 60px rgba(22,163,74,0.15);}
 .auth-card .brand-icon{width:100px;height:100px;background:#fff;border-radius:20px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.05);}
 .auth-card .brand-icon img{width:100%;height:100%;object-fit:cover;}
-.auth-card h4{font-weight:800;color:var(--dark);text-align:center;letter-spacing:-0.5px;}
-.auth-card small{color:#64748b;display:block;text-align:center;margin-bottom:24px;font-style:italic;}
-.auth-card .form-control{border-radius:10px;padding:12px 16px;border:1.5px solid #e2e8f0;font-size:14px;}
-.auth-card .form-control:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(22,163,74,0.12);}
-.auth-card .btn-primary{background:var(--primary);border:none;border-radius:10px;padding:12px;font-weight:600;width:100%;}
-.auth-card .btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(22,163,74,0.3);}
-.buyer-welcome{font-size:13px;color:#166534;text-align:center;padding:12px 14px;background:#f0fdf4;border-radius:10px;border:1px dashed var(--primary);margin-bottom:16px;line-height:1.5;}
-.buyer-welcome i{font-size:16px;color:var(--primary);display:block;margin-bottom:4px;}
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-width);background:var(--dark);color:#e2e8f0;z-index:1050;transition:transform 0.3s;display:flex;flex-direction:column;overflow-y:auto;}
 .sidebar .brand{padding:16px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px;}
 .sidebar .brand-icon-sm{width:44px;height:44px;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.2);}
 .sidebar .brand-icon-sm img{width:100%;height:100%;object-fit:cover;}
-.sidebar .brand span{font-weight:700;font-size:16px;color:#fff;display:block;line-height:1.1;}
 .sidebar .brand small{display:block;font-size:11px;color:#86efac;font-style:italic;}
 .sidebar .nav{flex:1;padding:16px 12px;display:flex;flex-direction:column;gap:2px;}
 .sidebar .nav-label{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:#64748b;padding:12px 12px 6px;font-weight:600;}
@@ -132,70 +123,25 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 .btn-primary:hover{background:var(--primary-dark);border-color:var(--primary-dark);}
 .btn-outline-primary{color:var(--primary);border-color:var(--primary);}
 .btn-outline-primary:hover{background:var(--primary);color:#fff;}
-.conn-status{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:600;}
-.conn-status.online{background:#d1fae5;color:#065f46;}
-.conn-status.offline{background:#fee2e2;color:#991b1b;}
-.conn-status.syncing{background:#fef3c7;color:#92400e;}
+
+/* 🔇 FICHA KIASHIRIA CHA FIREBASE */
+#connStatus{display:none !important;}
+
 .empty-state{text-align:center;padding:60px 20px;color:#94a3b8;}
 .empty-state i{font-size:72px;margin-bottom:12px;display:block;}
 .creds-box{font-size:13px;padding:12px 16px;background:#f0fdf4;border-radius:10px;border-left:4px solid var(--primary);margin-top:16px;}
 .creds-box code{background:#fff;padding:2px 6px;border-radius:4px;color:var(--primary-dark);font-size:12px;}
 .creds-box .fw-bold{color:var(--dark);margin-bottom:6px;display:block;}
-
-/* ═══ ADMIN ENTRY (karibu na "Firebase tayari") ═══ */
-.admin-entry-btn{
-  background:#fff;
-  border:1.5px solid #e2e8f0;
-  color:#475569;
-  border-radius:10px;
-  padding:6px 12px;
-  font-size:12px;
-  font-weight:600;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  cursor:pointer;
-  transition:0.2s;
-  white-space:nowrap;
-}
-.admin-entry-btn:hover{
-  border-color:var(--primary);
-  color:var(--primary);
-  background:#f0fdf4;
-  transform:translateY(-1px);
-  box-shadow:0 4px 12px rgba(22,163,74,0.18);
-}
+.admin-entry-btn{background:#fff;border:1.5px solid #e2e8f0;color:#475569;border-radius:10px;padding:6px 12px;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:0.2s;white-space:nowrap;}
+.admin-entry-btn:hover{border-color:var(--primary);color:var(--primary);background:#f0fdf4;transform:translateY(-1px);box-shadow:0 4px 12px rgba(22,163,74,0.18);}
 .admin-entry-btn i{font-size:14px;}
-
-.admin-badge{
-  background:#dcfce7;
-  color:#166534;
-  border:1.5px solid #86efac;
-  border-radius:10px;
-  padding:6px 12px;
-  font-size:12px;
-  font-weight:700;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  white-space:nowrap;
-}
-
-#adminLoginModal .form-control{
-  border-radius:10px;
-  padding:11px 14px;
-  border:1.5px solid #e2e8f0;
-  font-size:14px;
-}
-#adminLoginModal .form-control:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 4px rgba(22,163,74,0.12);
-}
+.admin-badge{background:#dcfce7;color:#166534;border:1.5px solid #86efac;border-radius:10px;padding:6px 12px;font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;}
+#adminLoginModal .form-control{border-radius:10px;padding:11px 14px;border:1.5px solid #e2e8f0;font-size:14px;}
+#adminLoginModal .form-control:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(22,163,74,0.12);}
 #adminLoginModal .form-label{font-weight:600;font-size:13px;color:#334155;}
 
 @media(max-width:992px){.sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}.main-content{margin-left:0;}.header .toggle-sidebar{display:block;}.content{padding:16px;}}
 @media(max-width:576px){
-  .auth-card{padding:26px 20px;}
   .product-grid{grid-template-columns:repeat(2,1fr);gap:10px;}
   .product-card .img-box{height:130px;}
   .cat-item{width:80px;padding:12px 6px;}
@@ -209,71 +155,35 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 </head>
 <body>
 
-<!-- LOGIN (MTEJA PEKE YAKE) -->
-<div id="authPage" class="auth-wrapper">
-  <div class="auth-card">
-    <div class="brand-icon">
-      <img src="https://iili.io/nlxxaEB.png" alt="SOKONI Logo" />
-    </div>
-    <small>"Nunua • Uza • Tangaza"</small>
+<div id="authPage" class="auth-wrapper" style="display:none !important;"></div>
 
-    <div class="buyer-welcome">
-      <i class="bi bi-info-circle-fill"></i>
-      <strong>Karibu SOKONI!</strong><br />
-      Ingia ili kununua na kuuza.
-    </div>
-
-    <div id="loginAlert" style="display:none;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:12px;"></div>
-
-    <button type="button" class="btn btn-primary mt-2" id="loginBtn" onclick="handleLogin(event)">
-      <i class="bi bi-box-arrow-in-right me-1"></i> Karibu gusa apa
-    </button>
-
-    <p class="text-center mt-3 mb-0 small text-muted">
-      <i class="bi bi-shield-check"></i> Tufanye biashara Pamoja
-    </p>
-  </div>
-</div>
-
-<!-- SIDEBAR -->
 <div id="sidebarOverlay" class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <aside class="sidebar" id="sidebar">
   <div class="brand">
-    <div class="brand-icon-sm">
-      <img src="https://iili.io/nlxxaEB.png" alt="SOKONI Logo" />
-    </div>
-    <div>
-      <small id="sidebarRoleLabel">TZ • Mteja</small>
-    </div>
+    <div class="brand-icon-sm"><img src="https://iili.io/nlxxaEB.png" alt="SOKONI" /></div>
+    <div><small id="sidebarRoleLabel">TZ • Mtembezi</small></div>
   </div>
-
   <nav class="nav">
     <div class="nav-label">Menu Kuu</div>
     <a class="nav-link active" data-page="home" onclick="navigate('home')"><i class="bi bi-house-door-fill"></i> Nyumbani</a>
     <a class="nav-link" data-page="categories" onclick="navigate('categories')"><i class="bi bi-grid-3x3-gap-fill"></i> Kategoria</a>
-
     <a class="nav-link admin-only" id="msgNavLink" data-page="messages" onclick="navigate('messages')" style="display:none;">
       <i class="bi bi-envelope-fill"></i> Ujumbe
       <span id="msgRedDot" class="red-dot-badge" style="display:none;">0</span>
     </a>
-
     <div class="nav-label mt-3 admin-only" id="adminNavLabel" style="display:none;">Usimamizi</div>
     <a class="nav-link admin-only" data-page="dashboard" onclick="navigate('dashboard')" style="display:none;"><i class="bi bi-speedometer2"></i> Dashibodi</a>
     <a class="nav-link admin-only" data-page="addproduct" onclick="navigate('addproduct')" style="display:none;"><i class="bi bi-plus-circle-fill"></i> Ongeza Bidhaa</a>
     <a class="nav-link admin-only" data-page="mylistings" onclick="navigate('mylistings')" style="display:none;"><i class="bi bi-box-seam-fill"></i> Bidhaa Zangu</a>
     <a class="nav-link admin-only" data-page="admin" onclick="navigate('admin')" style="display:none;"><i class="bi bi-shield-lock-fill"></i> Admin Panel</a>
   </nav>
-
   <div class="footer">
-    <button class="btn btn-sm btn-outline-danger w-100" onclick="handleLogout()">
-      <i class="bi bi-box-arrow-right me-1"></i> Toka
-    </button>
+    <button class="btn btn-sm btn-outline-danger w-100" onclick="handleLogout()"><i class="bi bi-box-arrow-right me-1"></i> Toka</button>
     <div class="text-center mt-2 small" style="color:#64748b;">&copy; 2026 SOKONI TZ</div>
   </div>
 </aside>
 
-<!-- MAIN -->
 <div class="main-content" id="mainContent" style="display:none;">
   <header class="header">
     <div class="d-flex align-items-center gap-3">
@@ -281,24 +191,18 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       <span class="page-title" id="pageTitle">Nyumbani</span>
     </div>
     <div class="user-info">
-      <span id="connStatus" class="d-none d-md-inline conn-status syncing"><i class="bi bi-cloud"></i> Inaunganisha...</span>
-
-      <!-- 🔐 Kitufe cha Admin — kinapatikana ndani ya sehemu ya mteja -->
+      <span id="connStatus" class="conn-status syncing"><i class="bi bi-cloud"></i> Inaunganisha...</span>
       <button class="admin-entry-btn" id="adminEntryBtn" onclick="openAdminLogin()" title="Ingia kama Admin">
         <i class="bi bi-shield-lock-fill"></i> <span>Admin</span>
       </button>
-
-      <!-- 🟢 Badge inaonekana tu kama Admin ameingia -->
       <span class="admin-badge" id="adminBadge" style="display:none;">
         <i class="bi bi-patch-check-fill"></i> <span>Admin</span>
       </span>
-
-      <div class="avatar" id="userAvatar" onclick="navigate('profile')">U</div>
+      <div class="avatar" id="userAvatar" onclick="navigate('profile')">M</div>
     </div>
   </header>
 
   <div class="content">
-
     <section id="page-home" class="page-section active">
       <div class="search-bar">
         <input type="text" id="homeSearch" placeholder="🔍 Tafuta bidhaa, eneo, au aina..." oninput="renderHomeProducts()" />
@@ -318,7 +222,6 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       <div class="product-grid" id="catProductsGrid"></div>
     </section>
 
-    <!-- DASHIBODI -->
     <section id="page-dashboard" class="page-section">
       <h5 class="fw-bold mb-4">Dashibodi 👋</h5>
       <div class="row g-3 mb-4">
@@ -335,7 +238,6 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       <div id="recentProducts"></div>
     </section>
 
-    <!-- ONGEZA BIDHAA -->
     <section id="page-addproduct" class="page-section">
       <div class="form-card">
         <h5><i class="bi bi-plus-circle-fill me-2" style="color:var(--primary);"></i><span id="formTitle">Ongeza Bidhaa Mpya</span></h5>
@@ -368,43 +270,25 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
             <div class="col-md-6"><label>Bei (TSh) *</label><input type="number" class="form-control" id="pPrice" placeholder="12000000" required /></div>
           </div>
           <div class="row g-3 mb-3">
-            <div class="col-md-6">
-              <label>Namba ya Simu *</label>
-              <input type="tel" class="form-control" id="pSellerPhone" placeholder="mfano: 0712345678" required />
-              <small class="text-muted"><i class="bi bi-info-circle"></i> Namba hii itaonekana kwa mteja.</small>
-            </div>
-            <div class="col-md-6">
-              <label>Jina la Muuzaji / Duka</label>
-              <input type="text" class="form-control" id="pSellerName" placeholder="mfano: Soko Duka" />
-              <small class="text-muted"><i class="bi bi-info-circle"></i> Kiache tupu kutumia jina la akaunti yako.</small>
-            </div>
+            <div class="col-md-6"><label>Namba ya Simu *</label><input type="tel" class="form-control" id="pSellerPhone" placeholder="0712345678" required /></div>
+            <div class="col-md-6"><label>Jina la Muuzaji / Duka</label><input type="text" class="form-control" id="pSellerName" placeholder="mfano: Soko Duka" /></div>
           </div>
           <div class="row g-3 mb-3">
             <div class="col-md-6">
               <label>Eneo / Mkoa *</label>
               <select class="form-select" id="pLocation" required>
                 <option value="">-- Chagua --</option>
-                <option>Dar es Salaam</option>
-                <option>Arusha</option>
-                <option>Mwanza</option>
-                <option>Dodoma</option>
-                <option>Mbeya</option>
-                <option>Tanga</option>
-                <option>Morogoro</option>
-                <option>Kilimanjaro</option>
-                <option>Zanzibar</option>
-                <option>Mtwara</option>
+                <option>Dar es Salaam</option><option>Arusha</option><option>Mwanza</option><option>Dodoma</option>
+                <option>Mbeya</option><option>Tanga</option><option>Morogoro</option><option>Kilimanjaro</option>
+                <option>Zanzibar</option><option>Mtwara</option>
               </select>
             </div>
             <div class="col-md-6">
               <label>Hali</label>
-              <select class="form-select" id="pCondition">
-                <option value="mpya">Mpya</option>
-                <option value="iliyotumika">Iliyotumika</option>
-              </select>
+              <select class="form-select" id="pCondition"><option value="mpya">Mpya</option><option value="iliyotumika">Iliyotumika</option></select>
             </div>
           </div>
-          <div class="mb-3"><label>Maelezo *</label><textarea class="form-control" id="pDesc" rows="4" placeholder="Eleza bidhaa yako kwa undani..." required></textarea></div>
+          <div class="mb-3"><label>Maelezo *</label><textarea class="form-control" id="pDesc" rows="4" required></textarea></div>
           <div class="d-flex gap-2">
             <button type="submit" class="btn btn-primary" id="submitBtn"><i class="bi bi-cloud-upload me-1"></i> <span id="submitText">Publish Bidhaa</span></button>
             <button type="button" class="btn btn-secondary" onclick="navigate('dashboard')">Ghairi</button>
@@ -413,7 +297,6 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       </div>
     </section>
 
-    <!-- BIDHAA ZANGU -->
     <section id="page-mylistings" class="page-section">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h5 class="fw-bold mb-0">Bidhaa Zangu</h5>
@@ -432,10 +315,10 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
 
     <section id="page-profile" class="page-section">
       <div class="profile-header">
-        <div class="avatar-lg" id="profileAvatar">U</div>
-        <h5 class="fw-bold mb-1" id="profileName">Mtumiaji</h5>
-        <p class="mb-0 opacity-75" id="profileEmail">email@example.com</p>
-        <span class="badge bg-light text-dark mt-2" id="profileRole">Mteja</span>
+        <div class="avatar-lg" id="profileAvatar">M</div>
+        <h5 class="fw-bold mb-1" id="profileName">Mtembezi</h5>
+        <p class="mb-0 opacity-75" id="profileEmail">guest@sokoni.app</p>
+        <span class="badge bg-light text-dark mt-2" id="profileRole">Mtembezi</span>
       </div>
       <div class="card border-0 shadow-sm" style="border-radius:var(--radius);">
         <div class="card-body">
@@ -457,39 +340,23 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
         <div class="col-6 col-md-3"><div class="stat-mini"><div class="icon text-danger"><i class="bi bi-cash-stack"></i></div><div class="num" id="adminStatValue" style="font-size:14px;">TSh 0</div><div class="lbl">Thamani</div></div></div>
       </div>
       <div class="row g-3">
-        <div class="col-12">
-          <div class="form-card">
-            <h6 class="fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Watumiaji Wote</h6>
-            <div class="table-responsive">
-              <table class="table table-sm"><thead><tr><th>Jina</th><th>Email</th><th>Simu</th><th>Role</th><th>Vitendo</th></tr></thead><tbody id="adminUsersTable"></tbody></table>
-            </div>
+        <div class="col-12"><div class="form-card"><h6 class="fw-bold mb-3"><i class="bi bi-people-fill me-2"></i>Watumiaji Wote</h6>
+          <div class="table-responsive"><table class="table table-sm"><thead><tr><th>Jina</th><th>Email</th><th>Simu</th><th>Role</th><th>Vitendo</th></tr></thead><tbody id="adminUsersTable"></tbody></table></div>
+        </div></div>
+        <div class="col-12"><div class="form-card"><h6 class="fw-bold mb-3"><i class="bi bi-box-seam-fill me-2"></i>Bidhaa Zote</h6>
+          <div class="table-responsive"><table class="table table-sm"><thead><tr><th>Bidhaa</th><th>Bei</th><th>Muuzaji</th><th>Simu</th><th>Vitendo</th></tr></thead><tbody id="adminProductsTable"></tbody></table></div>
+        </div></div>
+        <div class="col-12"><div class="form-card"><h6 class="fw-bold mb-3"><i class="bi bi-cloud-fill me-2"></i>Firebase</h6>
+          <div class="d-flex flex-wrap gap-2">
+            <button class="btn btn-primary btn-sm" onclick="syncFromStorage(true)"><i class="bi bi-arrow-clockwise me-1"></i> Sasisha</button>
+            <button class="btn btn-outline-info btn-sm" onclick="exportData()"><i class="bi bi-box-arrow-up me-1"></i> Export JSON</button>
           </div>
-        </div>
-        <div class="col-12">
-          <div class="form-card">
-            <h6 class="fw-bold mb-3"><i class="bi bi-box-seam-fill me-2"></i>Bidhaa Zote</h6>
-            <div class="table-responsive">
-              <table class="table table-sm"><thead><tr><th>Bidhaa</th><th>Bei</th><th>Muuzaji</th><th>Simu</th><th>Vitendo</th></tr></thead><tbody id="adminProductsTable"></tbody></table>
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="form-card">
-            <h6 class="fw-bold mb-3"><i class="bi bi-cloud-fill me-2"></i>Firebase</h6>
-            <p class="small text-muted mb-2">Data zote zinahifadhiwa kwenye Firebase (wingu).</p>
-            <div class="d-flex flex-wrap gap-2">
-              <button class="btn btn-primary btn-sm" onclick="syncFromStorage(true)"><i class="bi bi-arrow-clockwise me-1"></i> Sasisha</button>
-              <button class="btn btn-outline-info btn-sm" onclick="exportData()"><i class="bi bi-box-arrow-up me-1"></i> Export JSON</button>
-            </div>
-          </div>
-        </div>
+        </div></div>
       </div>
     </section>
-
   </div>
 </div>
 
-<!-- PRODUCT MODAL -->
 <div class="modal fade" id="productModal" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content" style="border-radius:16px;border:none;">
@@ -499,9 +366,7 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
       </div>
       <div class="modal-body" id="modalBody"></div>
       <div class="modal-footer border-0 d-flex justify-content-between align-items-center flex-wrap gap-2">
-        <a id="footerPhoneLink" href="#" class="footer-phone" style="display:none;">
-          <i class="bi bi-telephone-fill"></i> <span id="footerPhoneText">0712345678</span>
-        </a>
+        <a id="footerPhoneLink" href="#" class="footer-phone" style="display:none;"><i class="bi bi-telephone-fill"></i> <span id="footerPhoneText"></span></a>
         <span id="footerPhoneEmpty" class="footer-phone-empty" style="display:none;"><i class="bi bi-telephone-x"></i> Namba haipo</span>
         <div class="d-flex gap-2 ms-auto">
           <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Funga</button>
@@ -512,44 +377,22 @@ body{font-family:'Inter',sans-serif;background:#f4f7fa;color:#1e293b;overflow-x:
   </div>
 </div>
 
-<!-- ═══════════ ADMIN LOGIN MODAL (inaingia ndani ya mteja) ═══════════ -->
 <div class="modal fade" id="adminLoginModal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content" style="border-radius:18px;border:none;overflow:hidden;">
       <div class="modal-header border-0 pb-0">
-        <h6 class="modal-title fw-bold">
-          <i class="bi bi-shield-lock-fill me-2" style="color:var(--primary);"></i>Kuingia kwa Admin
-        </h6>
+        <h6 class="modal-title fw-bold"><i class="bi bi-shield-lock-fill me-2" style="color:var(--primary);"></i>Kuingia kwa Admin</h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
       </div>
       <div class="modal-body pt-2">
-        <p class="small text-muted mb-3">
-          Weka <strong>barua pepe</strong> na <strong>neno la siri</strong> la Admin ili kupata dashibodi yako.
-        </p>
-
         <div id="adminLoginAlert" style="display:none;padding:10px 14px;border-radius:10px;font-size:13px;margin-bottom:12px;"></div>
-
-        <div class="mb-3">
-          <label class="form-label">Barua pepe</label>
-          <input type="email" class="form-control" id="adminEmail" placeholder="mfano@gmail.com" autocomplete="email" />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Neno la Siri</label>
-          <input type="password" class="form-control" id="adminPassword" placeholder="••••••"
-                 autocomplete="current-password"
-                 onkeydown="if(event.key==='Enter'){event.preventDefault();doAdminLogin();}" />
-        </div>
-
-        <div class="creds-box">
-          <span class="fw-bold"><i class="bi bi-key-fill me-1"></i>Credentials:</span>
-          👨‍💼 <strong>Admin:</strong> <code>admin@soko.app</code> / <code>admin123</code>
-        </div>
+        <div class="mb-3"><label class="form-label">Barua pepe</label><input type="email" class="form-control" id="adminEmail" placeholder="admin@soko.app" /></div>
+        <div class="mb-3"><label class="form-label">Neno la Siri</label><input type="password" class="form-control" id="adminPassword" placeholder="••••••" onkeydown="if(event.key==='Enter'){event.preventDefault();doAdminLogin();}" /></div>
+        <div class="creds-box"><span class="fw-bold"><i class="bi bi-key-fill me-1"></i>Credentials:</span> 👨‍💼 <strong>Admin:</strong> <code>admin@soko.app</code> / <code>admin123</code></div>
       </div>
       <div class="modal-footer border-0 pt-0">
         <button class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Funga</button>
-        <button class="btn btn-primary btn-sm" id="adminLoginBtn" onclick="doAdminLogin()">
-          <i class="bi bi-box-arrow-in-right me-1"></i> Ingia
-        </button>
+        <button class="btn btn-primary btn-sm" id="adminLoginBtn" onclick="doAdminLogin()"><i class="bi bi-box-arrow-in-right me-1"></i> Ingia</button>
       </div>
     </div>
   </div>
@@ -577,15 +420,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
-const storage = firebase.storage();
 
 const COL_USERS = 'soko_users';
 const COL_PRODUCTS = 'soko_products';
 const COL_CHATS = 'soko_chats';
 
-/* ═══════════════════════════════════════════════════════════
-   STATE
-   ═══════════════════════════════════════════════════════════ */
 let currentUser = null;
 let currentPage = 'home';
 let currentCategory = '';
@@ -606,114 +445,163 @@ const CATEGORIES = [
   { name: 'Viwanja',  icon: 'bi-map-fill',         color: '#22c55e' },
 ];
 
-/* ═══════════════════════════════════════════════════════════
-   HELPERS
-   ═══════════════════════════════════════════════════════════ */
 function formatCurrency(n) { return 'TSh ' + Number(n || 0).toLocaleString('en-US'); }
 function esc(str) { return String(str || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function chatIdFor(a, b) { return [a, b].sort().join('__'); }
 
 function setConn(status, text) {
-  const el = document.getElementById('connStatus');
-  if (!el) return;
-  const map = {
-    online:  { cls: 'online',  icon: 'bi-cloud-check-fill', t: text || 'Firebase' },
-    offline: { cls: 'offline', icon: 'bi-cloud-slash',       t: text || 'Haipatikani' },
-    syncing: { cls: 'syncing', icon: 'bi-arrow-repeat',      t: text || 'Inasawazisha...' }
-  };
-  const s = map[status] || map.syncing;
-  el.className = 'conn-status ' + s.cls + ' d-none d-md-inline';
-  el.innerHTML = '<i class="bi ' + s.icon + '"></i> ' + s.t;
+  // 🔇 Imefichwa kabisa — haina maana ya kuonyesha hali ya Firebase
+  return;
 }
 
 function translateError(err) {
   const code = err.code || '';
   const map = {
     'auth/invalid-email': 'Barua pepe si sahihi.',
-    'auth/user-disabled': 'Akaunti hii imezimwa.',
     'auth/user-not-found': 'Mtumiaji hapatikani.',
     'auth/wrong-password': 'Neno la siri si sahihi.',
     'auth/invalid-credential': 'Barua pepe au neno la siri si sahihi.',
     'auth/invalid-login-credentials': 'Barua pepe au neno la siri si sahihi.',
     'auth/too-many-requests': 'Umejaribu mara nyingi. Subiri dakika 5.',
     'auth/network-request-failed': 'Tatizo la mtandao. Angalia internet.',
-    'auth/operation-not-allowed': 'Njia hii haijawashwa kwenye Firebase Console.',
-    'auth/admin-restricted-operation': 'Anonymous Auth haijawashwa kwenye Firebase Console.',
-    'auth/unauthorized-domain': 'Domain hii hairuhusiwi. Ongeza kwenye Firebase Console.',
+    'auth/operation-not-allowed': 'Anonymous Auth haijawashwa.',
+    'auth/unauthorized-domain': 'Domain hii hairuhusiwi.',
     'permission-denied': 'Huna ruhusa. Angalia Firestore Rules.',
-    'storage/unauthorized': 'Huna ruhusa kupakia picha. Angalia Storage Rules.',
     'unavailable': 'Firebase haipatikani. Angalia internet.'
   };
   return map[code] || err.message || 'Tatizo lisilojulikana.';
 }
 
-function showLoginAlert(msg, type='error') {
-  const el = document.getElementById('loginAlert');
-  if (!el) return;
-  const colors = {
-    error: { bg: '#fef2f2', border: '#fecaca', color: '#991b1b' },
-    success: { bg: '#f0fdf4', border: '#bbf7d0', color: '#166534' },
-    info: { bg: '#eff6ff', border: '#bfdbfe', color: '#1e40af' }
-  };
-  const c = colors[type] || colors.error;
-  el.style.display = 'block';
-  el.style.background = c.bg;
-  el.style.border = '1px solid ' + c.border;
-  el.style.color = c.color;
-  el.innerHTML = msg;
-}
-function hideLoginAlert() { const el = document.getElementById('loginAlert'); if (el) el.style.display = 'none'; }
-
 /* ═══════════════════════════════════════════════════════════
-   FIRESTORE OPERATIONS
+   🔥 SIMPLE PRODUCT LOADER
    ═══════════════════════════════════════════════════════════ */
-async function fetchAllUsers() {
+async function loadProductsSimple() {
+  console.log('📦 Inajaribu kupakia bidhaa...');
+  try {
+    let snap;
+    try {
+      snap = await db.collection(COL_PRODUCTS).orderBy('createdAt', 'desc').get();
+      console.log('✅ orderBy ilifanikiwa');
+    } catch (e) {
+      console.warn('⚠️ orderBy imeshindwa, tunasoma bila orderBy:', e.message);
+      snap = await db.collection(COL_PRODUCTS).get();
+    }
+    allProductsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    console.log('✅ Bidhaa zilizopakiwa:', allProductsCache.length);
+    renderHomeProducts();
+    renderCategoryProducts();
+    return true;
+  } catch (e) {
+    console.error('❌ Imeshindwa kupakia bidhaa:', e.message, e.code);
+    if (e.code === 'permission-denied') {
+      alert('⚠️ Firestore Rules inazuia kusoma bidhaa.\n\nNenda Firebase Console → Firestore Database → Rules na uweke:\n\nrules_version = \'2\';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /{document=**} {\n      allow read: if true;\n      allow write: if request.auth != null;\n    }\n  }\n}');
+    }
+    renderHomeProducts();
+    renderCategoryProducts();
+    return false;
+  }
+}
+
+function subscribeProductsRealtime() {
+  if (productsUnsubscribe) { try { productsUnsubscribe(); } catch(e) {} }
+  try {
+    productsUnsubscribe = db.collection(COL_PRODUCTS).onSnapshot(
+      snap => {
+        allProductsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        console.log('🔥 Realtime update:', allProductsCache.length);
+        refreshCurrentPage();
+      },
+      err => console.warn('realtime subscribe error:', err.message)
+    );
+  } catch (e) {
+    console.warn('subscribeProductsRealtime:', e.message);
+  }
+}
+
+function refreshCurrentPage() {
+  if (currentPage === 'home') renderHomeProducts();
+  if (currentPage === 'categories') renderCategoryProducts();
+  if (currentPage === 'dashboard') renderDashboard();
+  if (currentPage === 'mylistings') renderMyListings();
+  if (currentPage === 'admin') renderAdmin();
+}
+
+async function loadUsersSimple() {
   try {
     const snap = await db.collection(COL_USERS).get();
     allUsersCache = snap.docs.map(d => ({ uid: d.id, ...d.data() }));
-  } catch (e) { console.warn('users fetch:', e.message); allUsersCache = []; }
-}
-async function fetchAllProducts() {
-  try {
-    const snap = await db.collection(COL_PRODUCTS).orderBy('createdAt', 'desc').get();
-    allProductsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  } catch (e) { console.warn('products fetch:', e.message); allProductsCache = []; }
-}
-async function fetchAllChats() {
-  try {
-    const snap = await db.collection(COL_CHATS).orderBy('ts', 'desc').limit(500).get();
-    allChatsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  } catch (e) { console.warn('chats fetch:', e.message); allChatsCache = []; }
+    console.log('👥 Watumiaji:', allUsersCache.length);
+  } catch (e) {
+    console.warn('users:', e.message);
+    allUsersCache = [];
+  }
 }
 
-function subscribeProducts() {
-  if (productsUnsubscribe) productsUnsubscribe();
-  productsUnsubscribe = db.collection(COL_PRODUCTS).orderBy('createdAt', 'desc').onSnapshot(snap => {
-    allProductsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    if (!currentUser) return;
-    if (currentPage === 'home') renderHomeProducts();
-    if (currentPage === 'categories') renderCategoryProducts();
-    if (currentPage === 'dashboard') renderDashboard();
-    if (currentPage === 'mylistings') renderMyListings();
-    if (currentPage === 'admin') renderAdmin();
-  }, err => console.warn('products snap:', err.message));
-}
-
-function subscribeChats() {
-  if (chatsUnsubscribe) chatsUnsubscribe();
+async function loadChatsSimple() {
   if (!currentUser) return;
-  chatsUnsubscribe = db.collection(COL_CHATS)
-    .where('participants', 'array-contains', currentUser.uid)
-    .onSnapshot(snap => {
-      allChatsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      updateAdminUnreadBadge();
-      if (currentPage === 'messages') renderChatList();
-      if (currentPage === 'chat' && activeChat) renderChatMessages();
-    }, err => console.warn('chats snap:', err.message));
+  try {
+    const snap = await db.collection(COL_CHATS)
+      .where('participants', 'array-contains', currentUser.uid)
+      .get();
+    allChatsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  } catch (e) {
+    console.warn('chats:', e.message);
+    allChatsCache = [];
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
-   COUNT UNREAD / BADGE
+   AUTO START
+   ═══════════════════════════════════════════════════════════ */
+async function autoStart() {
+  currentUser = {
+    uid: 'guest_' + Math.random().toString(36).substr(2, 9),
+    name: 'Mtembezi',
+    email: '',
+    phone: '',
+    role: 'buyer',
+    isAnonymous: true,
+    offlineMode: true
+  };
+
+  showApp();
+
+  await loadProductsSimple();
+  await loadUsersSimple();
+
+  subscribeProductsRealtime();
+
+  try {
+    const cred = await auth.signInAnonymously();
+    currentUser.uid = cred.user.uid;
+    currentUser.offlineMode = false;
+    console.log('✅ Anonymous auth imefanikiwa. UID:', currentUser.uid);
+    subscribeChats();
+    loadChatsSimple();
+  } catch (err) {
+    console.warn('⚠️ Anonymous auth imeshindwa:', err.message);
+  }
+}
+
+function subscribeChats() {
+  if (chatsUnsubscribe) { try { chatsUnsubscribe(); } catch(e) {} }
+  if (!currentUser) return;
+  try {
+    chatsUnsubscribe = db.collection(COL_CHATS)
+      .where('participants', 'array-contains', currentUser.uid)
+      .onSnapshot(snap => {
+        allChatsCache = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        updateAdminUnreadBadge();
+        if (currentPage === 'messages') renderChatList();
+        if (currentPage === 'chat' && activeChat) renderChatMessages();
+      }, err => console.warn('chats snap:', err.message));
+  } catch (e) {
+    console.warn('subscribeChats:', e.message);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BADGE / UNREAD
    ═══════════════════════════════════════════════════════════ */
 function countUnreadForAdmin() {
   if (!currentUser || currentUser.role !== 'admin') return 0;
@@ -742,145 +630,66 @@ async function markMessagesAsRead(otherUid) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   LOAD / SYNC
+   SYNC / EXPORT
    ═══════════════════════════════════════════════════════════ */
-async function loadAllData() {
-  setConn('syncing', 'Inasawazisha...');
-  try {
-    await Promise.all([fetchAllProducts(), fetchAllUsers(), fetchAllChats()]);
-    setConn('online', 'Firebase tayari');
-  } catch (e) {
-    console.warn(e);
-    setConn('offline', 'Haipatikani');
-  }
-}
-function syncFromStorage(showAlert) {
-  setConn('syncing', 'Inasawazisha...');
-  loadAllData().then(() => {
-    if (showAlert) alert('✅ Data imesawazishwa!\n\nWatumiaji: ' + allUsersCache.length + '\nBidhaa: ' + allProductsCache.length + '\nChats: ' + allChatsCache.length);
-    if (currentUser) {
-      renderHomeProducts(); renderCategoryProducts();
-      if (currentUser.role === 'admin') { renderDashboard(); renderMyListings(); renderAdmin(); }
-    }
-    updateAdminUnreadBadge();
-  });
+async function syncFromStorage(showAlert) {
+  await loadProductsSimple();
+  await loadUsersSimple();
+  await loadChatsSimple();
+  if (showAlert) alert('✅ Data imesawazishwa!\n\nWatumiaji: ' + allUsersCache.length + '\nBidhaa: ' + allProductsCache.length + '\nChats: ' + allChatsCache.length);
+  refreshCurrentPage();
+  updateAdminUnreadBadge();
 }
 function exportData() {
   const data = { users: allUsersCache, products: allProductsCache, chats: allChatsCache, exportedAt: new Date().toISOString() };
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
+  const a = document.createElement('a'); a.href = url;
   a.download = 'soko-app-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click();
-  URL.revokeObjectURL(url);
+  a.click(); URL.revokeObjectURL(url);
 }
 
 /* ═══════════════════════════════════════════════════════════
-   LOGIN (MTEJA PEKE YAKE) / LOGOUT
+   LOGOUT
    ═══════════════════════════════════════════════════════════ */
-async function handleLogin(e) {
-  if (e) e.preventDefault();
-  hideLoginAlert();
-  const btn = document.getElementById('loginBtn');
-  if (btn) {
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Inaingia...';
-  }
-
-  try {
-    const cred = await auth.signInAnonymously();
-    currentUser = {
-      uid: cred.user.uid,
-      name: 'Mteja',
-      email: '',
-      phone: '',
-      role: 'buyer',
-      isAnonymous: true
-    };
-    await loadAllData();
-    subscribeProducts();
-    subscribeChats();
-    showApp();
-    setConn('online', 'Firebase tayari');
-  } catch (err) {
-    console.error('Login:', err);
-    showLoginAlert('❌ ' + translateError(err));
-  }
-
-  if (btn) {
-    btn.disabled = false;
-    btn.innerHTML = '<i class="bi bi-box-arrow-in-right me-1"></i> Ingia kama Mteja';
-  }
-  return false;
-}
-
 async function handleLogout() {
-  if (!confirm('Toka?')) return;
+  if (!confirm('Toka? Utabaki kama Mtembezi.')) return;
   try { await auth.signOut(); } catch(e) {}
-  if (productsUnsubscribe) { productsUnsubscribe(); productsUnsubscribe = null; }
-  if (chatsUnsubscribe) { chatsUnsubscribe(); chatsUnsubscribe = null; }
-  currentUser = null;
-  currentCategory = '';
-  activeChat = null;
-  uploadedImages = [];
-  allProductsCache = [];
-  allUsersCache = [];
-  allChatsCache = [];
-  document.getElementById('authPage').style.display = 'flex';
-  document.getElementById('mainContent').style.display = 'none';
-  document.getElementById('sidebar').classList.remove('open');
-  document.getElementById('sidebarOverlay').classList.remove('active');
+  if (productsUnsubscribe) { try { productsUnsubscribe(); } catch(e){} productsUnsubscribe = null; }
+  if (chatsUnsubscribe) { try { chatsUnsubscribe(); } catch(e){} chatsUnsubscribe = null; }
+  currentUser = null; currentCategory = ''; activeChat = null; uploadedImages = [];
+  allProductsCache = []; allUsersCache = []; allChatsCache = [];
   const chatPage = document.getElementById('page-chat');
   if (chatPage) chatPage.remove();
-  hideLoginAlert();
+  await autoStart();
 }
 
 /* ═══════════════════════════════════════════════════════════
-   ADMIN LOGIN KUTOKA NDANI (karibu na "Firebase tayari")
+   ADMIN LOGIN
    ═══════════════════════════════════════════════════════════ */
 function openAdminLogin() {
   if (!currentUser) return;
-  if (currentUser.role === 'admin') {
-    navigate('admin');
-    return;
-  }
+  if (currentUser.role === 'admin') { navigate('admin'); return; }
   hideAdminLoginAlert();
   document.getElementById('adminEmail').value = '';
   document.getElementById('adminPassword').value = '';
-  const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('adminLoginModal'));
-  modal.show();
+  bootstrap.Modal.getOrCreateInstance(document.getElementById('adminLoginModal')).show();
   setTimeout(() => document.getElementById('adminEmail').focus(), 400);
 }
-
 function showAdminLoginAlert(msg, type = 'error') {
-  const el = document.getElementById('adminLoginAlert');
-  if (!el) return;
-  const colors = {
-    error: { bg:'#fef2f2', border:'#fecaca', color:'#991b1b' },
-    info:  { bg:'#eff6ff', border:'#bfdbfe', color:'#1e40af' }
-  };
-  const c = colors[type] || colors.error;
+  const el = document.getElementById('adminLoginAlert'); if (!el) return;
+  const c = type === 'info' ? { bg:'#eff6ff', border:'#bfdbfe', color:'#1e40af' } : { bg:'#fef2f2', border:'#fecaca', color:'#991b1b' };
   el.style.display = 'block';
-  el.style.background = c.bg;
-  el.style.border = '1px solid ' + c.border;
-  el.style.color = c.color;
+  el.style.background = c.bg; el.style.border = '1px solid ' + c.border; el.style.color = c.color;
   el.innerHTML = msg;
 }
-function hideAdminLoginAlert() {
-  const el = document.getElementById('adminLoginAlert');
-  if (el) el.style.display = 'none';
-}
+function hideAdminLoginAlert() { const el = document.getElementById('adminLoginAlert'); if (el) el.style.display = 'none'; }
 
 async function doAdminLogin() {
   const email    = document.getElementById('adminEmail').value.trim().toLowerCase();
   const password = document.getElementById('adminPassword').value.trim();
   hideAdminLoginAlert();
-
-  if (!email || !password) {
-    showAdminLoginAlert('Weka barua pepe na neno la siri.');
-    return;
-  }
+  if (!email || !password) { showAdminLoginAlert('Weka barua pepe na neno la siri.'); return; }
 
   const btn = document.getElementById('adminLoginBtn');
   const old = btn.innerHTML;
@@ -896,43 +705,31 @@ async function doAdminLogin() {
     if (userDoc.exists) {
       userData = userDoc.data();
       if (userData.role !== 'admin') {
-        // Sio admin — mrudishe kwenye akaunti ya mteja
         await auth.signOut();
         try { await auth.signInAnonymously(); } catch (e) {}
         throw new Error('Mtumiaji huyu si Admin.');
       }
     } else {
-      userData = {
-        name: email.split('@')[0],
-        email,
-        phone: '',
-        role: 'admin',
-        createdAt: Date.now()
-      };
+      userData = { name: email.split('@')[0], email, phone: '', role: 'admin', createdAt: Date.now() };
       await userDocRef.set(userData);
       userData.uid = cred.user.uid;
     }
 
-    // Safisha subscriptions za mteja
-    if (productsUnsubscribe) { productsUnsubscribe(); productsUnsubscribe = null; }
-    if (chatsUnsubscribe)    { chatsUnsubscribe();    chatsUnsubscribe = null; }
+    if (chatsUnsubscribe) { try { chatsUnsubscribe(); } catch(e){} chatsUnsubscribe = null; }
 
     currentUser = { uid: cred.user.uid, ...userData };
-    activeChat  = null;
+    activeChat = null;
 
-    await loadAllData();
-    subscribeProducts();
+    await loadUsersSimple();
+    await loadChatsSimple();
     subscribeChats();
 
     bootstrap.Modal.getOrCreateInstance(document.getElementById('adminLoginModal')).hide();
     showApp();
-    setConn('online', 'Firebase tayari');
-
   } catch (err) {
     console.error('Admin login:', err);
     showAdminLoginAlert('❌ ' + translateError(err));
   }
-
   btn.disabled = false;
   btn.innerHTML = old;
 }
@@ -945,8 +742,8 @@ function showApp() {
   document.getElementById('mainContent').style.display = 'block';
 
   const isAdmin = currentUser.role === 'admin';
-  const label = isAdmin ? 'Admin' : 'Mteja';
-  const initial = (currentUser.name || 'U').charAt(0).toUpperCase();
+  const label = isAdmin ? 'Admin' : 'Mtembezi';
+  const initial = (currentUser.name || 'M').charAt(0).toUpperCase();
 
   document.getElementById('userAvatar').textContent = initial;
   document.getElementById('sidebarRoleLabel').textContent = 'TZ • ' + label;
@@ -954,7 +751,6 @@ function showApp() {
   document.querySelectorAll('.admin-only').forEach(el => el.style.display = isAdmin ? 'flex' : 'none');
   document.getElementById('adminNavLabel').style.display = isAdmin ? 'block' : 'none';
 
-  // 🔐 Kitufe cha Admin (kinaonekana kwa mteja tu)
   const entryBtn   = document.getElementById('adminEntryBtn');
   const adminBadge = document.getElementById('adminBadge');
   if (entryBtn)   entryBtn.style.display   = isAdmin ? 'none' : 'inline-flex';
@@ -1070,8 +866,15 @@ function renderHomeProducts() {
   if (!grid) return;
   const search = (document.getElementById('homeSearch')?.value || '').toLowerCase();
   let list = allProductsCache.slice();
-  if (search) list = list.filter(p => (p.title||'').toLowerCase().includes(search) || (p.location||'').toLowerCase().includes(search) || (p.category||'').toLowerCase().includes(search));
-  if (!list.length) { grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${search?'zinazolingana':'bado'}</p></div>`; return; }
+  if (search) list = list.filter(p =>
+    (p.title||'').toLowerCase().includes(search) ||
+    (p.location||'').toLowerCase().includes(search) ||
+    (p.category||'').toLowerCase().includes(search)
+  );
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${search?'zinazolingana':'bado'}</p></div>`;
+    return;
+  }
   grid.innerHTML = list.map(productCardHTML).join('');
 }
 function renderCategoryProducts() {
@@ -1083,7 +886,10 @@ function renderCategoryProducts() {
   if (currentCategory) list = list.filter(p => p.category === currentCategory);
   if (search) list = list.filter(p => (p.title || '').toLowerCase().includes(search));
   title.textContent = currentCategory ? `${currentCategory} (${list.length})` : `Bidhaa Zote (${list.length})`;
-  if (!list.length) { grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${currentCategory ? 'kwenye '+currentCategory : ''}</p></div>`; return; }
+  if (!list.length) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${currentCategory ? 'kwenye '+currentCategory : ''}</p></div>`;
+    return;
+  }
   grid.innerHTML = list.map(productCardHTML).join('');
 }
 
@@ -1188,10 +994,6 @@ function renderImagePreviews() {
 }
 function removeImage(i) { uploadedImages.splice(i, 1); renderImagePreviews(); }
 
-async function uploadImagesToStorage(images, productId) {
-  return images;
-}
-
 function resetProductForm() {
   document.getElementById('formTitle').textContent = 'Ongeza Bidhaa Mpya';
   document.getElementById('submitText').textContent = 'Publish Bidhaa';
@@ -1199,7 +1001,6 @@ function resetProductForm() {
   ['pTitle','pPrice','pDesc','pSellerPhone','pSellerName'].forEach(id => document.getElementById(id).value = '');
   ['pCategory','pLocation'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('pCondition').value = 'mpya';
-  if (currentUser && currentUser.phone) document.getElementById('pSellerPhone').value = currentUser.phone;
   if (currentUser && currentUser.name) document.getElementById('pSellerName').value = currentUser.name;
   uploadedImages = [];
   renderImagePreviews();
@@ -1224,46 +1025,33 @@ async function handleAddProduct(e) {
     const sellerName = document.getElementById('pSellerName').value.trim() || currentUser.name || 'Muuzaji';
 
     if (!title || !category || !price || !location || !description || !sellerPhone) {
-      alert('Jaza sehemu zote zenye *');
-      btn.disabled = false; btn.innerHTML = old;
-      return false;
+      alert('Jaza sehemu zote zenye *'); btn.disabled = false; btn.innerHTML = old; return false;
     }
-
     if (uploadedImages.length < 5) {
       alert('Tafadhali weka angalau picha 5 ili kuweza kupublish bidhaa hii.');
-      btn.disabled = false;
-      btn.innerHTML = old;
-      return false;
+      btn.disabled = false; btn.innerHTML = old; return false;
     }
 
     const productId = editId || db.collection(COL_PRODUCTS).doc().id;
-    const imageUrls = await uploadImagesToStorage(uploadedImages, productId);
-
     const baseData = {
       title, category, price, location, condition, description,
-      images: imageUrls,
+      images: uploadedImages,
       sellerId: currentUser.uid,
       sellerName, sellerPhone,
       updatedAt: Date.now()
     };
 
-    if (editId) {
-      await db.collection(COL_PRODUCTS).doc(editId).update(baseData);
-    } else {
-      await db.collection(COL_PRODUCTS).doc(productId).set({
-        ...baseData, createdAt: Date.now(), featured: false, sold: false
-      });
-    }
+    if (editId) await db.collection(COL_PRODUCTS).doc(editId).update(baseData);
+    else await db.collection(COL_PRODUCTS).doc(productId).set({ ...baseData, createdAt: Date.now(), featured: false, sold: false });
 
     alert('✅ Bidhaa imehifadhiwa!');
+    await loadProductsSimple();
     navigate('mylistings');
   } catch (err) {
     console.error(err);
     alert('Tatizo: ' + translateError(err));
   }
-
-  btn.disabled = false;
-  btn.innerHTML = old;
+  btn.disabled = false; btn.innerHTML = old;
   return false;
 }
 
@@ -1290,20 +1078,15 @@ function editProduct(id) {
 
 async function deleteProduct(id) {
   if (!confirm('Futa bidhaa hii?')) return;
-  try {
-    await db.collection(COL_PRODUCTS).doc(id).delete();
-    alert('✅ Imefutwa');
-  } catch (err) { alert('Tatizo: ' + translateError(err)); }
+  try { await db.collection(COL_PRODUCTS).doc(id).delete(); alert('✅ Imefutwa'); await loadProductsSimple(); }
+  catch (err) { alert('Tatizo: ' + translateError(err)); }
 }
-
 async function toggleSold(id) {
-  const p = allProductsCache.find(x => x.id === id);
-  if (!p) return;
+  const p = allProductsCache.find(x => x.id === id); if (!p) return;
   try { await db.collection(COL_PRODUCTS).doc(id).update({ sold: !p.sold }); } catch(e) { alert(e.message); }
 }
 async function toggleFeatured(id) {
-  const p = allProductsCache.find(x => x.id === id);
-  if (!p) return;
+  const p = allProductsCache.find(x => x.id === id); if (!p) return;
   try { await db.collection(COL_PRODUCTS).doc(id).update({ featured: !p.featured }); } catch(e) { alert(e.message); }
 }
 
@@ -1360,11 +1143,9 @@ function renderMyListings() {
 
 function renderAdmin() {
   if (!currentUser || currentUser.role !== 'admin') return;
-  const users = allUsersCache;
-  const products = allProductsCache;
+  const users = allUsersCache, products = allProductsCache;
   const featured = products.filter(p => p.featured).length;
   const totalValue = products.reduce((s, p) => s + (p.price || 0), 0);
-
   document.getElementById('adminStatUsers').textContent = users.length;
   document.getElementById('adminStatProducts').textContent = products.length;
   document.getElementById('adminStatFeatured').textContent = featured;
@@ -1372,39 +1153,29 @@ function renderAdmin() {
 
   document.getElementById('adminUsersTable').innerHTML = users.map(u => `
     <tr>
-      <td>${esc(u.name)}</td>
-      <td>${esc(u.email || '-')}</td>
-      <td>${esc(u.phone || '-')}</td>
+      <td>${esc(u.name)}</td><td>${esc(u.email || '-')}</td><td>${esc(u.phone || '-')}</td>
       <td><span class="badge bg-primary">${u.role}</span></td>
       <td>
         <button class="btn btn-sm btn-outline-primary" onclick="openChat('${u.uid}', '${esc(u.name).replace(/'/g,"\\'")}', '', '')">💬</button>
         ${u.role !== 'admin' ? `<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('${u.uid}')">🗑️</button>` : ''}
       </td>
-    </tr>
-  `).join('') || '<tr><td colspan="5" class="text-center text-muted">Hakuna watumiaji</td></tr>';
+    </tr>`).join('') || '<tr><td colspan="5" class="text-center text-muted">Hakuna watumiaji</td></tr>';
 
   document.getElementById('adminProductsTable').innerHTML = products.map(p => `
     <tr>
-      <td>${esc(p.title)}</td>
-      <td>${formatCurrency(p.price)}</td>
-      <td>${esc(getSellerName(p))}</td>
-      <td>${esc(getSellerPhone(p) || '-')}</td>
+      <td>${esc(p.title)}</td><td>${formatCurrency(p.price)}</td>
+      <td>${esc(getSellerName(p))}</td><td>${esc(getSellerPhone(p) || '-')}</td>
       <td>
         <button class="btn btn-sm btn-outline-warning" onclick="toggleFeatured('${p.id}')">${p.featured ? '⭐' : '☆'}</button>
         <button class="btn btn-sm btn-outline-danger" onclick="deleteProduct('${p.id}')">🗑️</button>
       </td>
-    </tr>
-  `).join('') || '<tr><td colspan="5" class="text-center text-muted">Hakuna bidhaa</td></tr>';
+    </tr>`).join('') || '<tr><td colspan="5" class="text-center text-muted">Hakuna bidhaa</td></tr>';
 }
 
 async function deleteUser(uid) {
-  if (!confirm('Futa mtumiaji huyu kwenye Firestore?')) return;
-  try {
-    await db.collection(COL_USERS).doc(uid).delete();
-    await fetchAllUsers();
-    renderAdmin();
-    alert('✅ Imefutwa (Auth user bado yupo kwenye Firebase Authentication)');
-  } catch (err) { alert('Tatizo: ' + translateError(err)); }
+  if (!confirm('Futa mtumiaji huyu?')) return;
+  try { await db.collection(COL_USERS).doc(uid).delete(); await loadUsersSimple(); renderAdmin(); alert('✅ Imefutwa'); }
+  catch (err) { alert('Tatizo: ' + translateError(err)); }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1414,7 +1185,6 @@ function openChat(otherUid, otherName, productId, productTitle) {
   if (!currentUser) return;
   if (otherUid === currentUser.uid) return alert('Hauwezi kujichat mwenyewe.');
   activeChat = { otherUid, otherName: otherName || 'Mtumiaji', productId, productTitle };
-
   if (currentUser.role === 'admin') markMessagesAsRead(otherUid);
 
   document.querySelectorAll('.page-section').forEach(el => el.classList.remove('active'));
@@ -1434,8 +1204,7 @@ function openChat(otherUid, otherName, productId, productTitle) {
           <input type="text" id="chatInput" placeholder="Andika ujumbe..." onkeydown="if(event.key==='Enter')sendMsg()" />
           <button onclick="sendMsg()"><i class="bi bi-send-fill"></i></button>
         </div>
-      </div>
-    `;
+      </div>`;
     document.querySelector('.content').appendChild(chatPage);
   }
   chatPage.classList.add('active');
@@ -1446,8 +1215,7 @@ function openChat(otherUid, otherName, productId, productTitle) {
 
 function renderChatMessages() {
   if (!activeChat || !currentUser) return;
-  const box = document.getElementById('chatMsgs');
-  if (!box) return;
+  const box = document.getElementById('chatMsgs'); if (!box) return;
   const cid = chatIdFor(currentUser.uid, activeChat.otherUid);
   const msgs = allChatsCache.filter(m => m.chatId === cid).sort((a, b) => a.ts - b.ts);
   if (!msgs.length) { box.innerHTML = '<div class="text-center text-muted small py-3">Anza mazungumzo...</div>'; return; }
@@ -1461,8 +1229,7 @@ function renderChatMessages() {
 async function sendMsg() {
   if (!currentUser || !activeChat) return;
   const input = document.getElementById('chatInput');
-  const text = input.value.trim();
-  if (!text) return;
+  const text = input.value.trim(); if (!text) return;
   input.value = '';
   const cid = chatIdFor(currentUser.uid, activeChat.otherUid);
   try {
@@ -1477,8 +1244,7 @@ async function sendMsg() {
       text,
       productId: activeChat.productId || '',
       productTitle: activeChat.productTitle || '',
-      ts: Date.now(),
-      read: false
+      ts: Date.now(), read: false
     });
   } catch (err) { alert('Tatizo: ' + translateError(err)); }
 }
@@ -1488,7 +1254,6 @@ function renderChatList() {
   const list = document.getElementById('chatListView');
   const uid = currentUser.uid;
   const myMsgs = allChatsCache.filter(m => m.senderId === uid || m.receiverId === uid);
-
   const grouped = {};
   myMsgs.forEach(m => { if (!grouped[m.chatId]) grouped[m.chatId] = []; grouped[m.chatId].push(m); });
 
@@ -1498,14 +1263,14 @@ function renderChatList() {
     const otherUid = last.senderId === uid ? last.receiverId : last.senderId;
     const otherName = last.senderId === uid ? last.receiverName : last.senderName;
     const unread = msgs.filter(m => m.senderId === otherUid && m.receiverId === uid && !m.read).length;
-    return { chatId: cid, otherUid, otherName, lastMessage: last.text, lastTime: last.ts, productTitle: last.productTitle, unread, count: msgs.length };
+    return { chatId: cid, otherUid, otherName, lastMessage: last.text, lastTime: last.ts, unread, count: msgs.length };
   }).sort((a, b) => b.lastTime - a.lastTime);
 
   const clearAllBtn = document.getElementById('clearAllBtn');
   if (clearAllBtn) clearAllBtn.style.display = chatList.length > 0 ? 'inline-flex' : 'none';
 
   if (!chatList.length) {
-    list.innerHTML = `<div class="empty-state"><i class="bi bi-envelope-open"></i><p>Hakuna ujumbe bado.</p><small>Ujumbe kutoka kwa wateja utaonekana hapa.</small></div>`;
+    list.innerHTML = `<div class="empty-state"><i class="bi bi-envelope-open"></i><p>Hakuna ujumbe bado.</p></div>`;
     return;
   }
 
@@ -1513,12 +1278,12 @@ function renderChatList() {
     <div class="chat-list-item ${c.unread > 0 ? 'unread' : ''}">
       <div class="avatar-sm" onclick="openChat('${c.otherUid}', '${esc(c.otherName).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">${esc(c.otherName).charAt(0).toUpperCase()}</div>
       <div class="flex-grow-1" onclick="openChat('${c.otherUid}', '${esc(c.otherName).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">
-        <div class="fw-bold">${esc(c.otherName)} ${c.count > 1 ? `<span class="text-muted small">(${c.count})</span>` : ''}</div>
+        <div class="fw-bold">${esc(c.otherName)}</div>
         <div class="small text-muted text-truncate" style="max-width:260px;">${esc(c.lastMessage || '')}</div>
       </div>
       <div class="action-btns">
         ${c.unread > 0 ? `<span class="unread-badge">${c.unread}</span>` : ''}
-        <button class="delete-btn" onclick="event.stopPropagation(); deleteChat('${c.otherUid}', '${esc(c.otherName).replace(/'/g,"\\'")}')" title="Futa mazungumzo"><i class="bi bi-trash-fill"></i></button>
+        <button class="delete-btn" onclick="event.stopPropagation(); deleteChat('${c.otherUid}', '${esc(c.otherName).replace(/'/g,"\\'")}')"><i class="bi bi-trash-fill"></i></button>
       </div>
     </div>
   `).join('');
@@ -1532,11 +1297,9 @@ function renderChatList() {
             <div class="avatar-sm" onclick="openChat('${u.uid}', '${esc(u.name).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">${esc(u.name).charAt(0).toUpperCase()}</div>
             <div class="flex-grow-1" onclick="openChat('${u.uid}', '${esc(u.name).replace(/'/g,"\\'")}', '', '')" style="cursor:pointer;">
               <div class="fw-bold">${esc(u.name)}</div>
-              <div class="small text-muted">${esc(u.email || '-')} • ${u.role}</div>
+              <div class="small text-muted">${esc(u.email || '-')}</div>
             </div>
-            <div class="action-btns"><i class="bi bi-chat-dots text-primary"></i></div>
-          </div>
-        `).join('')}`;
+          </div>`).join('')}`;
     }
   }
   list.innerHTML = html;
@@ -1572,15 +1335,15 @@ async function clearAllChats() {
    PROFILE
    ═══════════════════════════════════════════════════════════ */
 function renderProfile() {
-  const initial = (currentUser.name || 'U').charAt(0).toUpperCase();
+  const initial = (currentUser.name || 'M').charAt(0).toUpperCase();
   document.getElementById('profileAvatar').textContent = initial;
-  document.getElementById('profileName').textContent = currentUser.name || 'Mtumiaji';
-  document.getElementById('profileEmail').textContent = currentUser.email || (currentUser.isAnonymous ? '(Mteja asiyejulikana)' : 'Haipo');
-  document.getElementById('profileRole').textContent = currentUser.role === 'admin' ? '👨‍💼 Admin' : '👤 Mteja';
+  document.getElementById('profileName').textContent = currentUser.name || 'Mtembezi';
+  document.getElementById('profileEmail').textContent = currentUser.email || (currentUser.isAnonymous ? '(Mtembezi asiyejulikana)' : 'Haipo');
+  document.getElementById('profileRole').textContent = currentUser.role === 'admin' ? '👨‍💼 Admin' : '👤 Mtembezi';
   document.getElementById('pInfoName').textContent = currentUser.name || '-';
   document.getElementById('pInfoEmail').textContent = currentUser.email || '-';
   document.getElementById('pInfoPhone').textContent = currentUser.phone || '-';
-  document.getElementById('pInfoRole').textContent = currentUser.role === 'admin' ? 'Admin' : 'Mteja';
+  document.getElementById('pInfoRole').textContent = currentUser.role === 'admin' ? 'Admin' : 'Mtembezi';
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1588,8 +1351,8 @@ function renderProfile() {
    ═══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   renderCategories();
-  setConn('syncing', 'Inaunganisha...');
-  console.log('🛒 SOKONI imeanza! — Mteja aingia moja kwa moja, Admin kupitia kitufe cha ndani');
+  autoStart();
+  console.log('🛒 SOKONI imeanza! Bidhaa zinapakiwa moja kwa moja...');
 });
 </script>
 
