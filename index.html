@@ -872,7 +872,12 @@ function renderHomeProducts() {
     (p.category||'').toLowerCase().includes(search)
   );
   if (!list.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${search?'zinazolingana':'bado'}</p></div>`;
+    // ✅ NENO LILILOBADILISHWA: "Karibu, huduma inapatikana"
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
+      <i class="bi bi-shop-window" style="color:#16a34a;"></i>
+      <p style="font-size:18px;font-weight:700;color:#16a34a;margin-top:12px;">Karibu, huduma inapatikana</p>
+      <small style="color:#64748b;">${search ? 'Hakuna matokeo ya utafutaji wako.' : 'Bidhaa zitaonekana hapa hivi karibuni.'}</small>
+    </div>`;
     return;
   }
   grid.innerHTML = list.map(productCardHTML).join('');
@@ -887,7 +892,12 @@ function renderCategoryProducts() {
   if (search) list = list.filter(p => (p.title || '').toLowerCase().includes(search));
   title.textContent = currentCategory ? `${currentCategory} (${list.length})` : `Bidhaa Zote (${list.length})`;
   if (!list.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa ${currentCategory ? 'kwenye '+currentCategory : ''}</p></div>`;
+    // ✅ NENO LILILOBADILISHWA: "Karibu, huduma inapatikana"
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;">
+      <i class="bi bi-shop-window" style="color:#16a34a;"></i>
+      <p style="font-size:18px;font-weight:700;color:#16a34a;margin-top:12px;">Karibu, huduma inapatikana</p>
+      <small style="color:#64748b;">${currentCategory ? 'Bidhaa za '+currentCategory+' zitaonekana hapa.' : 'Bidhaa zitaonekana hapa hivi karibuni.'}</small>
+    </div>`;
     return;
   }
   grid.innerHTML = list.map(productCardHTML).join('');
@@ -1103,7 +1113,7 @@ function renderDashboard() {
 
   const recent = mine.slice(0, 4);
   const r = document.getElementById('recentProducts');
-  if (!recent.length) r.innerHTML = `<div class="empty-state"><i class="bi bi-box-seam"></i><p>Hakuna bidhaa bado.</p></div>`;
+  if (!recent.length) r.innerHTML = `<div class="empty-state"><i class="bi bi-shop-window" style="color:#16a34a;"></i><p style="font-size:16px;font-weight:700;color:#16a34a;">Karibu, huduma inapatikana</p></div>`;
   else r.innerHTML = `<div class="product-grid">${recent.map(productCardHTML).join('')}</div>`;
 }
 
@@ -1113,7 +1123,7 @@ function renderMyListings() {
   if (!currentUser || currentUser.role !== 'admin') return;
   const mine = allProductsCache.filter(p => p.sellerId === currentUser.uid);
   if (!mine.length) {
-    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-inbox"></i><p>Hakuna bidhaa bado.</p><button class="btn btn-primary mt-2" onclick="navigate('addproduct')">Ongeza Sasa</button></div>`;
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="bi bi-shop-window" style="color:#16a34a;"></i><p style="font-size:16px;font-weight:700;color:#16a34a;">Karibu, huduma inapatikana</p><button class="btn btn-primary mt-2" onclick="navigate('addproduct')">Ongeza Sasa</button></div>`;
     return;
   }
   grid.innerHTML = mine.map(p => {
